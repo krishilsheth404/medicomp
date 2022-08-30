@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style> * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+  }
+  .container {
+    width: 400px;
+    height: 400px;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    -webkit-box-shadow: 1.5rem 1.5rem 3.25rem 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 1.5rem 1.5rem 3.25rem 0 rgba(0, 0, 0, 0.25);
+    -ms-box-shadow: 1.5rem 1.5rem 3.25rem 0 rgba(0, 0, 0, 0.25);
+    -o-box-shadow: 1.5rem 1.5rem 3.25rem 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 1.5rem 1.5rem 3.25rem 0 rgba(0, 0, 0, 0.25);
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .slider-wrapper .slides-wrapper {
+    position: relative;
+    height: 100%;
+  }
+  .slider-wrapper .slides-wrapper .slide-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate(-50%, 0) scale(0.6);
+    -moz-transform: translate(-50%, 0) scale(0.6);
+    -ms-transform: translate(-50%, 0) scale(0.6);
+    -o-transform: translate(-50%, 0) scale(0.6);
+    transform: translate(-50%, 0) scale(0.6);
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+  }
+  .slider-wrapper .slides-wrapper .slide-item.prev, .slider-wrapper .slides-wrapper .slide-item.next {
+    opacity: 0.5;
+  }
+  .slider-wrapper .slides-wrapper .slide-item.next {
+    -webkit-transform: translate(-50%, -25%) scale(0.8);
+    -moz-transform: translate(-50%, -25%) scale(0.8);
+    -ms-transform: translate(-50%, -25%) scale(0.8);
+    -o-transform: translate(-50%, -25%) scale(0.8);
+    transform: translate(-50%, -25%) scale(0.8);
+  }
+  .slider-wrapper .slides-wrapper .slide-item.prev {
+    -webkit-transform: translate(-50%, -225%) scale(0.8);
+    -moz-transform: translate(-50%, -225%) scale(0.8);
+    -ms-transform: translate(-50%, -225%) scale(0.8);
+    -o-transform: translate(-50%, -225%) scale(0.8);
+    transform: translate(-50%, -225%) scale(0.8);
+  }
+  .slider-wrapper .slides-wrapper .slide-item.prev-done {
+    -webkit-transform: translate(-50%, -250%) scale(0.6);
+    -moz-transform: translate(-50%, -250%) scale(0.6);
+    -ms-transform: translate(-50%, -250%) scale(0.6);
+    -o-transform: translate(-50%, -250%) scale(0.6);
+    transform: translate(-50%, -250%) scale(0.6);
+  }
+  .slider-wrapper .slides-wrapper .slide-item.active {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -125%) scale(1);
+    -moz-transform: translate(-50%, -125%) scale(1);
+    -ms-transform: translate(-50%, -125%) scale(1);
+    -o-transform: translate(-50%, -125%) scale(1);
+    transform: translate(-50%, -125%) scale(1);
+  }
+  .slider-wrapper .slides-wrapper .slide-item i {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f6f6f6;
+    color: #333;
+    border-radius: 50%;
+  }
+  .slider-wrapper .slides-wrapper .slide-item p {
+    margin: 0;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .slider-wrapper .buttons-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+  }
+  .slider-wrapper .buttons-wrapper .btn {
+    background-color: #f6f6f6;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    -webkit-box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    -ms-box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    -o-box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+  .progress-wrapper {
+    width: 400px;
+    margin-top: 1rem;
+  }
+  .progress-wrapper .progress {
+    width: 100%;
+    height: 7px;
+    background-color: #999;
+    display: block;
+    border-radius: 10px;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -ms-transition: width 1s;
+    -o-transition: width 1s;
+    transition: width 1s;
+  }
+  </style>
+<body>
+
+    <h1>Vertical Slider</h1>
+<div class="container">
+  <div class="slider-wrapper">
+    <div class="slides-wrapper">
+      <div class="slide-item active">
+        <i class="fa-brands fa-bitcoin fa-2xl"></i>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="slide-item next">
+        <i class="fa-brands fa-chrome fa-2xl"></i>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="slide-item">
+        <i class="fa-brands fa-codepen fa-2xl"></i>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="slide-item ">
+        <i class="fa-brands fa-apple fa-2xl"></i>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="slide-item prev">
+        <i class="fa-brands fa-spotify fa-2xl"></i>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+    <div class="buttons-wrapper">
+      <div class="btn up"><i class="fa-solid fa-chevron-up"></i></div>
+      <div class="btn down"><i class="fa-solid fa-chevron-down"></i></div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrapper">
+  <span id="slider-prog" class="progress"></span>
+</div>
+    <script>
+        // Get Slider Items | Array.form [ES6 Feature]
+var sliderItems = Array.from(
+  document.querySelectorAll(".slides-wrapper .slide-item")
+);
+
+// Get Number Of Slides
+var slidesCount = sliderItems.length;
+
+// Set [Current/Next/Prev] Slide
+var currentSlide = 1;
+var nextSlide = currentSlide + 1;
+var prevSlide = slidesCount;
+
+// Up and Down Buttons
+var upButton = document.querySelector(".up");
+var downButton = document.querySelector(".down");
+
+// Handle Click on Up and Down Buttons
+upButton.onclick = slideUp;
+downButton.onclick = slideDown;
+
+// Trigger The Checker Function
+theChecker();
+
+// Auto Animate Slide
+var sliderWrapper = document.querySelector(".slider-wrapper");
+var EleHovered = false;
+
+sliderWrapper.addEventListener("mouseleave", () => {
+  EleHovered = false;
+});
+sliderWrapper.addEventListener("mouseenter", () => {
+  EleHovered = true;
+});
+
+
+
+// Next Slide Function
+function slideUp() {
+  // if the last item is active
+  if (currentSlide == slidesCount) {
+    currentSlide = 1;
+    theChecker();
+  } else {
+    currentSlide++;
+    theChecker();
+  }
+}
+
+// Previous Slide Function
+function slideDown() {
+  // if the first item is active
+  if (currentSlide == 1) {
+    currentSlide = slidesCount;
+    theChecker();
+  } else {
+    currentSlide--;
+    theChecker();
+  }
+}
+
+// Create The Checker Function
+function theChecker() {
+  // Remove All Active Classes
+  removeAllActive();
+
+  // Reset [Next/Prev] Items
+  if (currentSlide == 1) {
+    nextSlide = currentSlide + 1;
+    prevSlide = slidesCount;
+    prevDoneSlide = prevSlide - 1;
+  } else if (currentSlide == slidesCount) {
+    nextSlide = 1;
+    prevSlide = currentSlide - 1;
+    prevDoneSlide = prevSlide - 1;
+  } else {
+    nextSlide = currentSlide + 1;
+    prevSlide = currentSlide - 1;
+    prevDoneSlide = prevSlide - 1;
+  }
+
+  if (prevSlide == 1) {
+    prevDoneSlide = slidesCount;
+  }
+
+  // Set Active Class On Current Slide
+  sliderItems[currentSlide - 1].classList.add("active");
+  // Set Next Class On [Current + 1] Slide
+  sliderItems[nextSlide - 1].classList.add("next");
+  // Set Prev Class On [Current - 1] Slide
+  sliderItems[prevSlide - 1].classList.add("prev");
+  sliderItems[prevDoneSlide - 1].classList.add("prev-done");
+
+  // Trigger Progress Bar Function
+  fillProgBar();
+}
+
+// Remove All Active Classes From Images and Pagination Bullets
+function removeAllActive() {
+  // Loop Through Images
+  sliderItems.forEach(function (item) {
+    item.classList.remove("active", "next", "prev", "prev-done");
+  });
+}
+
+// Fill Progress Bar
+function fillProgBar() {
+  var percentage = (100 / slidesCount) * currentSlide;
+  document.getElementById("slider-prog").style.width = percentage + "%";
+}
+
+    </script>
+</body>
+</html>

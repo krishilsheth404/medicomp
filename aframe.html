@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/glide.min.js"></script>
+</head>
+<style>
+  *{
+    margin: 0px;
+    padding: 0px;
+  }
+</style>
+<body>
+  <div style="height:75vh;width: 100%;border: 1px solid black;" id="gameBlock">
+    <div id="vLine" ></div>
+    <div id="WLine" ></div>
+    <div id="rectForTM" style="height:50px;width:50px;position: absolute;top:100px;left: 100px;background-color: rgb(62, 220, 226);transform: rotate(0deg);">!</div>
+    <!-- <div id="rectForMM" style="height:100px;width:50px;position: absolute;top:150px;left: 100px;background-color: cadetblue;transform: rotate(0deg);"></div> -->
+    <!-- <div id="rectForBM" style="height:100px;width:50px;position: absolute;top:250px;left: 100px;background-color: rgb(53, 119, 122);transform: rotate(0deg);"></div> -->
+  </div>
+  <center>
+    <div class="container" >
+      <video class="input_video" width="0px" height="0px" ></video>
+      <canvas class="output_canvas" width="200px" height="120px" style="transform:rotateY(180deg)"></canvas>
+    </div>
+  </center>
+   
+
+
+</body>
+</html>
+
+
+<script type="module">
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+var ox,oy;
+var start=0;
+
+
+function coords(x,y,z)
+{
+  console.log(x,y);
+  var element=document.getElementById('gameBlock');
+  var Bx=(element.clientWidth/100);
+  var By=(element.clientHeight/100);
+  // console.log(Bx*x,By*y);
+
+  // console.log(element.clientWidth,element.clientHeight)
+  document.getElementById('vLine').style=`height:5px;width:5px;position: absolute;top: ${By*y}px;right: ${Bx*x}px;background-color: black;transform: rotate(90deg);`
+  // document.getElementById('hLine').style=`height:5px;width:100%;position: absolute;top:${By*y}px;left:0px;background-color: aqua;`
+}
+
+function coordsForW(x,y,z)
+{
+  console.log(x,y);
+  var element=document.getElementById('gameBlock');
+  var Bx=(element.clientWidth/100);
+  var By=(element.clientHeight/100);
+  // console.log(Bx*x,By*y);
+
+  // console.log(element.clientWidth,element.clientHeight)
+  document.getElementById('WLine').style=`height:5px;width:5px;position: absolute;top: ${By*y}px;right: ${Bx*x}px;background-color: green;transform: rotate(90deg);`
+  // document.getElementById('hLine').style=`height:5px;width:100%;position: absolute;top:${By*y}px;left:0px;background-color: aqua;`
+}
+
+
+function onResults(results) {
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+  if (results.multiHandLandmarks) {
+    for (const landmarks of results.multiHandLandmarks) {
+      
+        coords(landmarks[5].x * 100,landmarks[5].y * 100,landmarks[12].z*100)
+        coordsForW(landmarks[18].x * 100,landmarks[18].y * 100,landmarks[0].z)
+
+      var degForXturn=Math.atan((landmarks[0].y-landmarks[12].y)/(landmarks[0].x-landmarks[12].x))* 180/3.14;
+      if(degForXturn<0)
+      {
+        degForXturn=180+degForXturn;
+      }else{
+        degForXturn=degForXturn;
+      }
+      console.log(degForXturn)
+      
+      var degForYturn=Math.atan((landmarks[5].y-landmarks[18].y)/(landmarks[18].x-landmarks[5].x))* 180/3.14;
+      if(degForYturn<0)
+      {
+        degForYturn=360+degForYturn;
+      }else{
+        degForYturn=degForYturn;
+      }
+      console.log(degForYturn)
+      // document.getElementById('rectForTM').style.transform=``;
+      
+      document.getElementById('rectForTM').style.transform=`rotate(${(90-degForXturn)*2}deg)`;
+
+
+      // document.getElementById('rectForMM').style.transform=`rotate(${90-deg}deg)`;
+      // document.getElementById('rectForBM').style.transform=`rotate(${90-deg}deg)`;
+    
+
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                     {color: '#ffffff', lineWidth: 1});
+      // drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1});
+    }
+  }
+  canvasCtx.restore();
+}
+
+const hands = new Hands({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+}});
+hands.setOptions({
+  maxNumHands: 1,
+  modelComplexity: 1,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+hands.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await hands.send({image: videoElement});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start();
+</script>

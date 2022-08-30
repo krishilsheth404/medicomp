@@ -1,0 +1,206 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/glide.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1076.0" data-gr-ext-installed="">
+
+  <!-- Use it like any other HTML element -->
+  <div id="demo" style="background: linear-gradient(#ffffff, #ffd500); overflow-x: hidden;
+  display: flex;align-items: center;justify-content: center;flex-wrap: wrap;height: 100vh;width: 100%;position: relative;">
+  
+  
+  <span id="dispDot" ></span>
+   
+ 
+      <model-viewer class="3dobj" alt="Car 3d model" id="ring" camera-controls="" interaction-prompt="none" auto-rotate=""
+      interpolation-decay="200" shadow-intensity="1"  autoplay=""  src="source/the_crowned_ring.glb"
+      ar ar-modes="webxr scene-viewer quick-look"  touch-action="pan-y" style="width:50%;height:40vh"
+      >
+    </model-viewer>
+      <model-viewer class="3dobj" alt="Car 3d model" id="diamond" camera-controls="" interaction-prompt="none" auto-rotate=""
+        interpolation-decay="200" shadow-intensity="1" autoplay=""  src="source/Diamond.glb"
+        ar ar-modes="webxr scene-viewer quick-look"  touch-action="pan-y" style="width:50%;height:40vh"
+        >
+      </model-viewer>
+      <model-viewer class="3dobj" alt="Car 3d model" id="chair" camera-controls="" interaction-prompt="none" auto-rotate=""
+        interpolation-decay="200" shadow-intensity="1" autoplay="" src="source/AnyConv.com__Armchair Cosmorelax Cosy N060422.glb"
+        ar ar-modes="webxr scene-viewer quick-look"  touch-action="pan-y" style="width:50%;height:40vh"
+        >
+      </model-viewer>
+    <center>
+    </div>
+      <div class="container">
+        <video class="input_video" width="0px" height="0px"></video>
+        <canvas class="output_canvas" width="175px" height="100px" style="transform:rotateY(180deg)"></canvas>
+      </div>
+    </center>
+
+
+
+  <!-- <script>
+     function getrandomRf(m){
+       return Math.random()*m;
+    }
+    (() => {
+     
+      // console.log(rf);
+      const modelViewer = document.querySelector('#orbit-demo');
+      var orbitCycle = [
+      '0deg 0deg 1m',
+    ' -10deg 0deg 4m',
+      // "0deg 0deg 1m",
+      modelViewer.cameraOrbit
+    ];
+    setInterval(() => {
+      const currentOrbitIndex = orbitCycle.indexOf(modelViewer.cameraOrbit);
+      
+        modelViewer.cameraOrbit =
+            orbitCycle[(currentOrbitIndex + 1) % orbitCycle.length];
+      }, 3000);
+    })();
+    // </script> -->
+
+  <script type="module">
+    const videoElement = document.getElementsByClassName('input_video')[0];
+    const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    const canvasCtx = canvasElement.getContext('2d');
+    var ox, oy;
+    var start = 0,z=0;
+    var oldscale,s,r,zoomVal=90;
+    var modelViewer=document.getElementById('ring');
+    var cameraOrbit= modelViewer.getCameraOrbit(); 
+    var prevId;
+    prevId="ring";
+    
+    // console.log(cameraOrbit);
+
+   
+    
+    oldscale=cameraOrbit.theta;
+    s=Math.round(cameraOrbit.phi);
+    r=cameraOrbit.radius;
+    function coords(x, y) {
+      
+      // console.log(y);
+      // console.log(ox-x);
+      var element=document.getElementById('demo');
+      var Bx=(element.clientWidth/100);
+      var By=(element.clientHeight/100);
+      var hoveredEle=document.elementFromPoint(Bx*(100-x),By*y);
+
+      // console.log(hoveredEle.id);
+      if(hoveredEle.className=="3dobj"&&hoveredEle.id!=null)
+      {
+       modelViewer=document.getElementById(hoveredEle.id);
+       prevId=toString(hoveredEle.id);
+       cameraOrbit= modelViewer.getCameraOrbit(); 
+       document.getElementById(hoveredEle.id).style.backgroundColor="pink";
+       document.getElementById(hoveredEle.id).style.transition="all 1s";
+       setTimeout(function(){
+         document.getElementById(hoveredEle.id).style.backgroundColor="transparent";
+},500); 
+      }
+
+  document.getElementById('dispDot').style=`z-index:10;height:5px;width:5px;position: absolute;top: ${By*y}px;right: ${Bx*x}px;background-color: black;transform: rotate(90deg);`
+
+      
+      if (ox - x >= 10) {
+        console.log('left')
+        oldscale-=20;
+        // r-=100;
+        modelViewer.cameraOrbit=`${oldscale}deg ${s}deg ${r}`;
+        modelViewer.fieldOfView=zoomVal+"%";
+      } else if (Math.abs(ox - x) >= 10) {
+        console.log('right')
+        oldscale+=20;
+        // r-=100;
+        modelViewer.cameraOrbit=`${oldscale}deg ${s}deg ${r}`;
+        modelViewer.fieldOfView=zoomVal+"%";
+      }else if (oy - y >= 15) {
+        console.log('up');
+        r+=1;
+        s+=20;
+        modelViewer.cameraOrbit=`${oldscale}deg ${s}deg ${r}`;
+        modelViewer.fieldOfView=zoomVal+"%";
+      } else if (y - oy >= 15) {
+        console.log('down');
+        s-=20;
+        modelViewer.cameraOrbit=`${oldscale}deg ${s}deg ${r}`;
+        modelViewer.fieldOfView=zoomVal+"%";
+      }else{
+        // modelViewer.cameraOrbit=`${oldscale}deg ${s}deg 1rad`;
+      }
+      ox = x;
+      oy = y;
+    }
+
+    function onResults(results) {
+      canvasCtx.save();
+      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      canvasCtx.drawImage(
+        results.image, 0, 0, canvasElement.width, canvasElement.height);
+      if (results.multiHandLandmarks) {
+        for (const landmarks of results.multiHandLandmarks) {
+          if (start == 0) {
+            ox = landmarks[12].x;
+            start++;
+          } else {
+            coords(landmarks[12].x * 100, landmarks[12].y * 100) //middle top point
+            var degForXturn = Math.atan((landmarks[0].y - landmarks[12].y) / (landmarks[0].x - landmarks[12].x)) * 180 / 3.14; //
+            console.log(degForXturn)
+            if (degForXturn < 0) {
+              degForXturn = 180 + degForXturn;
+            } else {
+              degForXturn = degForXturn;
+            }
+            // document.getElementById('orbit-demo').style.transform = `rotate(${90 - Math.round(degForXturn)}deg)`;
+            // document.getElementById('orbit-demo').style.transformOrigin="bottom";
+            // document.getElementById('orbit-demo').style.transition = `rotate 0.3s`;
+
+          }
+          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+            { color: '#ffffff', lineWidth: 1 });
+          // drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1});
+        }
+      }
+      canvasCtx.restore();
+    }
+
+    const hands = new Hands({
+      locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+      }
+    });
+    hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5
+    });
+    hands.onResults(onResults);
+
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        await hands.send({ image: videoElement });
+      },
+      width: 1280,
+      height: 720
+    });
+    camera.start();
+  </script>
+ 
+</body>
+</html>
