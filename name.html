@@ -4,6 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6943409373544581" crossorigin="anonymous"></script>
+    
+    <meta name="propeller" content="b6b666c61191339a339bfbceb39fb65a">
+    <script src="https://choupsee.com/pfe/current/tag.min.js?z=5392600" data-cfasync="false" async></script>
+
+    <script src="https://dibsemey.com/pfe/current/tag.min.js?z=5392747" data-cfasync="false" async></script>
+    
+    <!-- <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gloaphoo.net',5392757,document.createElement('script'))</script>
+    <script src="https://tobaltoyon.com/pfe/current/tag.min.js?z=5393591" data-cfasync="false" async></script>
+    <script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://inklinkor.com/tag.min.js',5393592,document.body||document.documentElement)</script> -->
+
+
+
+   
     <meta name="google-site-verification" content="2UrdzsqPnamnaH714EJyfILA9NdcKvlWPCL7oJZzzTs" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WT3XD0250C"></script>
     <link rel="icon" href="views/logo.jpg">
@@ -117,7 +130,7 @@
     
     #msform .action-button {
         width: 100px;
-        background: #DA4453;
+        background: #4d94ff;
         font-weight: bold;
         color: white;
         border: 0 none;
@@ -129,7 +142,7 @@
     
     #msform .action-button:hover,
     #msform .action-button:focus {
-        box-shadow: 0 0 0 2px white, 0 0 0 3px #DA4453;
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #4d94ff;
     }
     /*headings*/
     
@@ -200,7 +213,7 @@
     
     #progressbar li.active:before,
     #progressbar li.active:after {
-        background: #DA4453;
+        background: #4d94ff;
         color: white;
     }
     
@@ -214,7 +227,7 @@
         }
         #msform .action-button {
             width: 90px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -235,7 +248,7 @@
         }
         #msform .action-button {
             width: 75px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -256,7 +269,7 @@
         }
         #msform .action-button {
             width: 70px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -298,7 +311,7 @@
     .fa-instagram {
         background: white;
         box-shadow: 2px 2px 10px gray;
-        color: #DA4453;
+        color: #4d94ff;
     }
 </style>
 <style>
@@ -314,7 +327,7 @@
     .fa-instagram{
         background: white;
     box-shadow: 2px 2px 10px grey;
-    color: #DA4453;
+    color: #4d94ff;
     position: fixed;
     bottom: 5px;
     right: 5px;
@@ -343,7 +356,7 @@
             <h2 class="fs-title">Enter the Medicine Name</h2>
             <h3 class="fs-subtitle">For Comparison</h3>
             <!-- <input type="text" name="city" placeholder="City Name" required id='city' class='val4' autocomplete="off" /> -->
-            <input type="text" name="foodItem" placeholder="Medicine/Disease" required id='foodItem' class='val4' autocomplete="off" />
+            <input type="text" name="foodItem" placeholder="Medicine/Disease" required id='foodItem' class='val4' autocomplete="off"/>
 
             <input type="submit" name="submit" class="submit action-button" value="Search" id="form-submit">
         </fieldset>
@@ -351,11 +364,6 @@
         <fieldset>
             <h2 class="fs-title">Lets Be More Specific</h2>
             <h3 class="fs-subtitle">Which One?</h3>
-            <select>
-            <% for(var i=0; i < final.length-1; i++) { %>
-                <option value="<%=final[i]%>"><%=final[i]%></option>
-                <%}%>
- </select>
 
 
             <!--<textarea name="address" placeholder="Address"></textarea>-->
@@ -373,23 +381,21 @@
 
     </footer> -->
 
+  
+
     <script>
         var current_fs, next_fs, previous_fs; //fieldsets
         var left, opacity, scale; //fieldset properties which we will animate
         var animating; //flag to prevent quick multi-click glitches
 
-        // function start() {
-        //     if (document.getElementById('mail').value.trim() == '') {
-        //         alert('fill the required area');
-        //     } else {
-        //         next();
-        //         console.log('next step');
-        //     }
-        // }
+        function sub() {
+            console.log('yes');
+           document.getElementById('form-submit').click();
+        }
 
         var z = 15;
         // countdown();
-
+   
 
 
         $(".next").click(function() {
