@@ -11,6 +11,7 @@ const fs = require('fs');
 const ejs = require("ejs");
 const { AddressContext } = require('twilio/lib/rest/api/v2010/account/address');
 const { getElementsByTagType } = require('domutils');
+const { off } = require('process');
 // var urlForSwiggy, urlForZomato;
 // var extractLinksOfSwiggy, extractLinksOfZomato, matchedDishes = {};
 // var matchedDishesForSwiggy, matchedDishesForZomato, tempAddress, discCodesForZomato, addr, linkOld = '';
@@ -18,6 +19,7 @@ const { getElementsByTagType } = require('domutils');
 // var sdfd, tempurl, tempurl2;
 // var Offers = 0;
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname));
 // app.set('views', './');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,15 +32,15 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     res.sendFile(__dirname + '/name.html');
 });
-app.post('/details', async(req, res) => {
+app.post('/details', async (req, res) => {
     // Insert Login Code Here
 
-    const final = []
+    const final = [];
 
 
     urlForPe = `https://www.apollopharmacy.in/search-medicines/${req.body.foodItem}`;
 
-    extractdoe = async(url) => {
+    extractdoe = async (url) => {
         try {
             // Fetching HTML
             const { data } = await axios.get(url)
@@ -99,11 +101,37 @@ app.post('/details', async(req, res) => {
 //     }
 // };
 
-extractLinkFromyahoo = async(url) => {
+extractDataForAds = async (url) => {
+
+    try {
+        // Fetching HTML
+        const { data } = await axios.get(url);
+
+        const $ = cheerio.load(data);
+        // console.log($.html());
+        
+
+        return {
+            type: 'ad',
+            name:$('.resultTitle').first().text().trim(),
+            link: $('.resultTitle a').first().attr('href').trim(),
+            imgLink: '',
+            price: 'Ratings  ' + $('.ratevalue').first().text().trim(),
+            number: $('.cardElement').first().text().trim(),
+        };
+
+    } catch (error) {
+        // res.sendFile(__dirname + '/try.html');
+        // res.sendFile(__dirname + '/error.html');
+        // console.log(error);
+        return {};
+    }
+}
+extractLinkFromyahoo = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
-            // console.log(data)
+        // console.log(data)
 
         // Using cheerio to extract <a> tags
         const $ = cheerio.load(data);
@@ -123,21 +151,44 @@ extractLinkFromyahoo = async(url) => {
     } catch (error) {
         // res.sendFile(__dirname + '/try.html');
         // res.sendFile(__dirname + '/error.html');
-        // console.log(error);
+        console.log(error);
         return 0;
     }
 };
 
-extractDataOfPharmEasy = async(url) => {
+
+
+
+getOffersOfPharmeasy=async()=>{
+
+    const { data } = await axios.get(`https://pharmeasy.in/offers`)
+
+    // Using cheerio to extract <a> tags
+    const $ = cheerio.load(data);
+    const offers=[];
+    $('.OffersCard_title__1CZHB').map((i, elm) => {
+        offers.push($(elm).text());
+     });
+    return offers;
+}
+extractDataOfPharmEasy = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
 
         // Using cheerio to extract <a> tags
         const $ = cheerio.load(data);
+       
+        
+
+        const offers=await getOffersOfPharmeasy();
+           
+        // console.log(offers)
         // console.log($.html());
         var temp;
         // BreadCrumb_peBreadCrumb__2CyhJ
+        
+
         $('.BreadCrumbLink_breadCrumb__LljfJ').map((i, elm) => {
             temp = $(elm).text();
         })
@@ -162,6 +213,7 @@ extractDataOfPharmEasy = async(url) => {
             item: temp,
             imgLink: $('.swiper-wrapper img').attr('src'),
             price: price,
+            offer:offers,
         };
     } catch (error) {
         // res.sendFile(__dirname + '/try.html');
@@ -172,7 +224,19 @@ extractDataOfPharmEasy = async(url) => {
         return {};
     }
 };
-extractDataOfNetMeds = async(url) => {
+
+getOffersOfNetmeds=async()=>{
+    const { data } = await axios.get(`https://netmeds.com/offers`)
+
+    // Using cheerio to extract <a> tags
+    const $ = cheerio.load(data);
+    const offers=[];
+    $('.offer-coupon').map((i, elm) => {
+        offers.push($(elm).text());
+     });
+    return offers;
+}
+extractDataOfNetMeds = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url);
@@ -180,6 +244,8 @@ extractDataOfNetMeds = async(url) => {
         // Using cheerio to extract <a> tags
         const $ = cheerio.load(data);
         // console.log($.html());
+        const offers=await getOffersOfNetmeds();
+
 
         return {
             name: 'NetMeds',
@@ -187,6 +253,7 @@ extractDataOfNetMeds = async(url) => {
             item: $('.product-detail').text(),
             imgLink: $('.largeimage img').attr('src'),
             price: $('#last_price').attr('value'),
+            offer:offers,
         };
 
     } catch (error) {
@@ -196,7 +263,20 @@ extractDataOfNetMeds = async(url) => {
         return {};
     }
 };
-extractDataOfApollo = async(url) => {
+
+
+getOffersOfApollo=async()=>{
+    const { data } = await axios.get(`https://www.apollopharmacy.in/special-offers`)
+
+    // Using cheerio to extract <a> tags
+    const $ = cheerio.load(data);
+    const offers=[];
+    $('.OffersCard_title__1U6VE').map((i, elm) => {
+        offers.push($(elm).text());
+     });
+    return offers;
+}
+extractDataOfApollo = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
@@ -205,6 +285,10 @@ extractDataOfApollo = async(url) => {
         const $ = cheerio.load(data);
         // console.log($.html());
         var t, m;
+        const offers=await getOffersOfApollo();
+
+      
+
         t = $('.PdpWeb_productDetails__3K6Dg').first().text();
         if (t == '') {
             t = $('.ProductCard_productName__2LhTY').first().text();
@@ -220,13 +304,19 @@ extractDataOfApollo = async(url) => {
                 m = m.split(')')[1];
             }
         }
+        if(m){
+            if(m.includes('₹')){
+                m=m.split('₹')[1];
+            }
+        }
 
         return {
             name: 'Apollo',
             item: t,
-            link: $('.ProductCard_productCardGrid__rpg72 a').first().attr('href'),
+            link: "https://apollopharmacy.in"+$('.ProductCard_productCardGrid__rpg72 a').first().attr('href'),
             imgLink: $('.ProductCard_bigAvatar__2D8AB img').attr('src'),
             price: m,
+            offer:offers,
         };
 
     } catch (error) {
@@ -236,7 +326,9 @@ extractDataOfApollo = async(url) => {
         return {};
     }
 };
-extractDataOfHealthmug = async(url) => {
+
+
+extractDataOfHealthmug = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
@@ -263,7 +355,7 @@ extractDataOfHealthmug = async(url) => {
         return {};
     }
 };
-extractDataOfOmChemist = async(url) => {
+extractDataOfOmChemist = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
@@ -287,7 +379,7 @@ extractDataOfOmChemist = async(url) => {
         return {};
     }
 };
-extractDataOfTata = async(url) => {
+extractDataOfTata = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url);
@@ -374,7 +466,19 @@ extractDataOfTata = async(url) => {
         return {};
     }
 };
-extractDataOfmedplusMart = async(url) => {
+
+getOffersOfMedplusMart=async()=>{
+    const { data } = await axios.get(`https://www.pulseplus.in/offers`)
+
+    // Using cheerio to extract <a> tags
+    const $ = cheerio.load(data);
+    const offers=[];
+    $('#accordion h2').each(function(i, elm) {
+        offers.push($(elm).text());
+     });
+    return offers;
+}
+extractDataOfmedplusMart = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
@@ -382,6 +486,8 @@ extractDataOfmedplusMart = async(url) => {
         // Using cheerio to extract <a> tags
         const $ = cheerio.load(data);
         // console.log($.html());
+                const offers=await getOffersOfMedplusMart();
+
 
         var t = $('span[property=price]').attr('content');
 
@@ -392,7 +498,8 @@ extractDataOfmedplusMart = async(url) => {
             imgLink: $('.profile-picture').attr('src'),
             // price: $('.DrugPriceBox__price___dj2lv').text(),
             // price: $('span[property=priceCurrency]').text()
-            price: t
+            price: t,
+            offer:offers,
         };
 
     } catch (error) {
@@ -402,13 +509,28 @@ extractDataOfmedplusMart = async(url) => {
         return {};
     }
 };
-extractDataOfMyUpChar = async(url) => {
+
+getOffersOfMyUpChar=async()=>{
+    const { data } = await axios.get(`https://www.myupchar.com/en/offers`)
+
+    // Using cheerio to extract <a> tags
+    const $ = cheerio.load(data);
+    const offers=[];
+    $('.offers-bx h2').each(function(i, elm) {
+        offers.push($(elm).text());
+     });
+    return offers;
+}
+extractDataOfMyUpChar = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
 
         // Using cheerio to extract <a> tags
         const $ = cheerio.load(data);
+
+        const offers=await getOffersOfMyUpChar();
+        
         // console.log($.html());
         var a = $('.head h1').first().text();
         // console.log(a);
@@ -419,13 +541,13 @@ extractDataOfMyUpChar = async(url) => {
                 b = b.split('₹')[1];
             }
         }
-
         return {
             name: 'myupchar',
             item: a,
             link: url,
             imgLink: $('.image_slide').attr('src'),
             price: b,
+            offer:offers,
         };
 
     } catch (error) {
@@ -435,7 +557,50 @@ extractDataOfMyUpChar = async(url) => {
         return {};
     }
 };
-extractDataOfOBP = async(url) => {
+
+
+extractDataOfOBP = async (url) => {
+    try {
+        // Fetching HTML
+        const { data } = await axios.get(url)
+
+        // Using cheerio to extract <a> tags
+        const $ = cheerio.load(data);
+        // console.log($.html());
+        var p=$('.price').first().text();
+        if(p){
+            if(p.includes(" – "))
+            {
+                console.log(p)
+                p=p.split(" – ")[0];
+                console.log(p)
+            }
+        }
+        if(p){
+            if(p.includes('₹')){
+                p=p.split('₹')[1];
+            }
+        }
+
+        return {
+            name: 'Tablet Shablet',
+            item: $('.entry-title').text(),
+            link: url,
+            imgLink: $('.jws-gallery-image img').attr('src'),
+            price: p,
+            offer:[],
+        };
+
+    } catch (error) {
+        // res.sendFile(__dirname + '/try.html');
+        // res.sendFile(__dirname + '/error.html');
+        // console.log(error);
+        return {};
+    }
+};
+
+
+extractDataOfIndiMedo = async (url) => {
     try {
         // Fetching HTML
         const { data } = await axios.get(url)
@@ -445,11 +610,11 @@ extractDataOfOBP = async(url) => {
         // console.log($.html());
 
         return {
-            name: 'Tablet Shablet',
-            item: $('.entry-title').text(),
+            name: 'IndiMedo',
+            item: $('.tt-old-details-1-1-1 h3').text(),
             link: url,
-            imgLink: $('.jws-gallery-image img').attr('src'),
-            price: $('.price').first().text(),
+            imgLink: $('.xzoom-container img').attr('src'),
+            price: $('.regular-price span').first().text(),
         };
 
     } catch (error) {
@@ -462,204 +627,101 @@ extractDataOfOBP = async(url) => {
 
 
 
-app.post('/result', async(req, res) => {
+const nameOfMed = [], final = [];
+
+
+
+
+
+app.post('/result', async (req, res) => {
     // Insert Login Code Here
-
-    const nameOfMed = req.body.dataOfMed + '\n';
-    // try {
-    //     let date_ob = new Date();
-
-    //     // current date
-    //     // adjust 0 before single digit date
-    //     const date = ("0" + date_ob.getDate()).slice(-2);
-
-    //     // current month
-    //     const month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
-    //     // current year
-    //     const year = date_ob.getFullYear();
-    //     const finalDate = date + '/' + month + '/' + year;
-
-    //     const auth = new google.auth.GoogleAuth({
-    //         keyFile: "medicompJson.json",
-    //         scopes: "https://www.googleapis.com/auth/spreadsheets",
-    //     })
-    //     const spreadsheetId = "18AFfkHKArlpCqDuBC6yzfXOkTgOzRGmXeq88uhqQqGo";
-    //     const client = await auth.getClient();
-    //     const googleSheets = google.sheets({ version: "v4", auth: client });
-
-    //     googleSheets.spreadsheets.values.append({
-    //             auth,
-    //             spreadsheetId,
-    //             range: "Sheet1!A:B",
-    //             valueInputOption: "USER_ENTERED",
-    //             resource: {
-    //                 values: [
-    //                     [finalDate, nameOfMed]
-    //                 ]
-    //             },
-    //         })
-    //         // console.log(metadata);
-    // } catch (error) {
-    //     console.log({});
-    // }
+     final.length = 0;
+    nameOfMed.length = 0;
+    nameOfMed.push(req.body.finalmed) + '\n';
+    console.log('first name->'+nameOfMed[0]);
+    // const city = req.body.city + '\n';
+    const linkForSubs=[];
 
 
+    const urlForPharmEasy = `https://in.search.yahoo.com/search;_ylt=?p=site:pharmeasy.in+${nameOfMed[0]}&ad=dirN&o=0`;
+    console.log(urlForPharmEasy)
+    const urlForNetMeds = `https://in.search.yahoo.com/search;_ylt=?p=site:netmeds.com+${nameOfMed[0]}&ad=dirN&o=0`;
+    const urlForApollo = `https://www.apollopharmacy.in/search-medicines/${nameOfMed[0]}`;
+    const urlForIndiMedo= `https://in.search.yahoo.com/search;_ylt=?p=${nameOfMed[0]}+site:indimedo.com+&ad=dirN&o=0`;
+    // const urlForHealthmug = `https://www.healthmug.com/search?keywords=${nameOfMed[0]}`;
+    const urlForTata = `https://in.search.yahoo.com/search;_ylt=?p=site:1mg.com+${nameOfMed[0]}&ad=dirN&o=0`;
+    const urlForOBP = `https://in.search.yahoo.com/search;_ylt=?p=site:tabletshablet.com+${nameOfMed[0]}&ad=dirN&o=0`;
+    const urlFormedplusMart = `https://in.search.yahoo.com/search;_ylt=?p=site:pulseplus.in+${nameOfMed[0]}&ad=dirN&o=0`;
+    const urlForMyUpChar = `https://in.search.yahoo.com/search;_ylt=?p=site:myupchar.com+${nameOfMed[0]}&ad=dirN&o=0`;
+    // const urlForAd = `https://in.search.yahoo.com/search;_ylt=?p=site:asklaila.com chemist shops in ${city}&ad=dirN&o=0`;
+    const urlForOmChemist = `https://omhealthcart.com/catalogsearch/result/?q=${nameOfMed[0]}`
 
-    // fs.appendFile("data.txt", nameOfMed, function(err) {
-    //     if (err) {
-    //         return console.log(err);
-    //     }
-    //     console.log("The file was saved!");
-    // });
-    // https://www.ask.com/web?q=site:apollopharmacy.in%20crocin%20advance&ad=dirN&o=0
-    const urlForPharmEasy = `https://in.search.yahoo.com/search;_ylt=?p=site:pharmeasy.in+${nameOfMed}&ad=dirN&o=0`;
-    const urlForNetMeds = `https://in.search.yahoo.com/search;_ylt=?p=site:netmeds.com+${nameOfMed}&ad=dirN&o=0`;
-    const urlForApollo = `https://www.apollopharmacy.in/search-medicines/${nameOfMed}`;
-    // const urlForHealthmug = `https://www.healthmug.com/search?keywords=${nameOfMed}`;
-    const urlForTata = `https://in.search.yahoo.com/search;_ylt=?p=site:1mg.com+${nameOfMed}&ad=dirN&o=0`;
-    const urlForOBP = `https://in.search.yahoo.com/search;_ylt=?p=site:tabletshablet.com+${nameOfMed}&ad=dirN&o=0`;
-    const urlFormedplusMart = `https://in.search.yahoo.com/search;_ylt=?p=site:pulseplus.in+${nameOfMed}&ad=dirN&o=0`;
-    const urlForMyUpChar = `https://in.search.yahoo.com/search;_ylt=?p=site:myupchar.com+${nameOfMed}&ad=dirN&o=0`;
-    const urlForOmChemist = `https://omhealthcart.com/catalogsearch/result/?q=${nameOfMed}`
-   
-    const items = [urlForNetMeds, urlForPharmEasy, urlForTata, urlForOBP, urlFormedplusMart, urlForMyUpChar];
-    const item = [],
-        final = [];
-    // getLinks = async() => {
-    //     for (const item of items) {
-    //         // await fetchItem(item)
-    //         // if (t != '') {
-    //         if (item.includes('netmeds')) {
-    //             final.push(
-    //                     await extractLinkFromyahoo(item)
-    //                 ) // final.push(await extractDataOfNetMeds(t));
-    //         } else if (item.includes('1mg')) {
+    const item = [];
+  
+    extractSubsfApollo = async (url,final) => {
+        try {
+            // Fetching HTML
+            url=url.split('?')[0];
+            // url="https://apollopharmacy.in"+url;
+            console.log('got it->'+url);
+            const { data } = await axios.get(url)
+            const NameOfSubs=[];
+            const PriceOfSubs=[];
+            const ImgLinkOfSubs=[];
+            // Using cheerio to extract <a> tags
+            const $ = cheerio.load(data);
+            // console.log($.html());
+            const subs=[];
 
-    //             final.push(
-    //                 await extractLinkFromyahoo(item)
-    //             )
-
-
-    //             // final.push(await extractDataOfTata(t));
-    //         } else if (item.includes('myupchar')) {
-    //             final.push(
-    //                 await extractLinkFromyahoo(item)
-    //             )
-
-    //             console.log(urlForMyUpChar);
-
-    //             // final.push(await extractDataOfmedplusMart(t));
-    //         } else if (item.includes('pharmeasy')) {
-    //             // console.log('yes in it');
-    //             final.push(
-
-    //                 await extractLinkFromyahoo(item)
-    //             )
-
-    //             // console.log(urlForMyUpChar);
-
-    //             // final.push(await extractDataOfmedplusMart(t));
-    //         } else if (item.includes('pulseplus')) {
-    //             // console.log('yes in it');
-    //             final.push(
-    //                 await extractLinkFromyahoo(item)
-    //             )
-
-    //             // console.log(urlForMyUpChar);
-
-    //             // final.push(await extractDataOfmedplusMart(t));
-    //         } else if (item.includes('tabletshablet')) {
-    //             // console.log('yes in it');
-    //             final.push(
-    //                 await extractLinkFromyahoo(item)
-    //             )
-
-    //             // console.log(urlForMyUpChar);
-
-    //             // final.push(await extractDataOfmedplusMart(t));
-    //         }
-
-    //         // if(a!=1){
-    //         //     final.push(extractLinkFromGoogle('https://www.google.com/search?q=site:pharmeasy/com'))
-    //         // }
-    //         // } // linkNames.push(t);
-    //     }
-    // }
-    // await getLinks();
-    // console.log(final);
-
-
-    // const item = [];
-    // item.push(
-    //     await extractLinkFromyahoo(urlForPharmEasy),
-    // )
-    // item.push(
-    //     await extractLinkFromyahoo(urlForNetMeds),
-    // )
-    // item.push(
-    //     await extractLinkFromyahoo(urlForTata),
-    // )
-    // item.push(
-    //     await extractLinkFromyahoo(urlForMyUpChar),
-    // )
-    // item.push(
-    //     await extractLinkFromyahoo(urlForOBP),
-    // )
-    // item.push(
-    //     await extractLinkFromyahoo(urlFormedplusMart),
-    // )
-    async function getData(item) {
-        console.log('---');
-
-        // final.push(await extractDataOfHealthmug(urlForHealthmug))
-
-        final.push(await extractDataOfApollo(urlForApollo))
-        await Promise.all(item.map(async(item) => {
-            if (item != undefined || item != 0 || item != 'undefined') {
-                if (item.includes('netmeds')) {
-                    final.push(await extractDataOfNetMeds(item))
-                        // await fetchItem(item) 
-                } else if (item.includes('1mg')) {
-                    // final.push(await extractDataOfTata(item))
-                        // await fetchItem(item) 
-                } else if (item.includes('pharmeasy')) {
-                    final.push(await extractDataOfPharmEasy(item))
-                        // await fetchItem(item) 
-                } else if (item.includes('tabletshablet')) {
-                    final.push(await extractDataOfOBP(item))
-                        // await fetchItem(item) 
-                } else if (item.includes('pulseplus')) {
-                    final.push(await extractDataOfmedplusMart(item))
-                        // await fetchItem(item) 
-                } else if (item.includes('myupchar')) {
-                    final.push(await extractDataOfMyUpChar(item))
-                        // await fetchItem(item) 
-                } else if (item.includes(undefined)) {
-                    console.log('~~');
-                }
-                // await fetchItem(item) 
-
-            } else {
-                console.log('`')
+            $('.ProductSubstituteWidget_productTitle__t4qgT').each(function(i, elm) {
+                NameOfSubs.push($(this).text()) // for name 
+            });
+            $('.ProductSubstituteWidget_priceGroup__1crky').each(function(i, elm) {
+                PriceOfSubs.push($(this).text()) // for price 
+            });
+            $('.ProductSubstituteWidget_productIcon__16R4h img').each(function(i, elm) {
+                ImgLinkOfSubs.push($(this).attr('srcset')) // for imgLink 
+            });
+            if(NameOfSubs=='')
+            {
+                console.log('method 2');
+                $('.CommonWidget_productTitle__2FRMY').each(function(i, elm) {
+                    NameOfSubs.push($(this).text()) // for name 
+                });
+                $('.CommonWidget_priceGroup__1resK').each(function(i, elm) {
+                    PriceOfSubs.push($(this).text()) // for price 
+                });
+                $('.CommonWidget_productIcon__ky-JT img').each(function(i, elm) {
+                    ImgLinkOfSubs.push($(this).attr('srcset')) // for imgLink 
+                });
             }
-        }))
+            console.log('PRODUCT SUBSTITUTES-.\n');
+            for(var i=0;i<NameOfSubs.length;i++){
+                final.push({
+                    subsname:NameOfSubs[i],
+                    subsprice:PriceOfSubs[i],
+                    subsImgLink:ImgLinkOfSubs[i],
+            })
+            // console.log(final);
+           }
+    
+         
+    
+        } catch (error) {
+            // res.sendFile(__dirname + '/try.html');
+            // res.sendFile(__dirname + '/error.html');
+            // console.log(error);
+            return error;
+        }
+    };
 
-        // final.push(await extractDataOfOmChemist(urlForOmChemist))
-        // final.push(await extractDataOfSS(urlForSS));
 
+  
 
-        final.push(nameOfMed);
-        console.log(final);
-
-
-
-        res.render('final', { final: final });
-
-    }
-
-    await axios.all([extractLinkFromyahoo(urlForNetMeds), extractLinkFromyahoo(urlForPharmEasy), extractLinkFromyahoo(urlForTata), extractLinkFromyahoo(urlForOBP), extractLinkFromyahoo(urlFormedplusMart), extractLinkFromyahoo(urlForMyUpChar)])
-        .then(await axios.spread(async(...responses) => {
+            
+    await Promise.all([extractLinkFromyahoo(urlForNetMeds), extractLinkFromyahoo(urlForPharmEasy),extractLinkFromyahoo(urlForOBP), 
+        extractLinkFromyahoo(urlFormedplusMart), extractLinkFromyahoo(urlForMyUpChar)])
+        .then(await axios.spread(async (...responses) => {
             // console.log(...responses);
 
             item.push(responses[0])
@@ -667,18 +729,234 @@ app.post('/result', async(req, res) => {
             item.push(responses[2])
             item.push(responses[3])
             item.push(responses[4])
-            item.push(responses[5])
 
             console.log(item);
+            await Promise.all([extractDataOfNetMeds(item[0]), extractDataOfPharmEasy(item[1]),
+            extractDataOfOBP(item[2]), extractDataOfmedplusMart(item[3]), extractDataOfMyUpChar(item[4]),extractDataOfApollo(urlForApollo)])
+                .then(await axios.spread(async (...responses) => {
+                    // console.log(...responses);
+        
+                    final.push(responses[0])
+                    final.push(responses[1])
+                    final.push(responses[2])
+                    final.push(responses[3])
+                    final.push(responses[4])
+                    final.push(responses[5])
+                    await extractSubsfApollo(final[final.length-1].link,final);
+        
+                }))
+                final.sort((a, b) => a.price - b.price); // b - a for reverse sort
+                console.log(final);
 
-            getData(item);
-        }))
+                final.push(nameOfMed[0]);
+              
+                console.log('Found Everything Sir!..')
+                res.render('final', { final: final });
 
+
+         // getData(item);
+            }))
+
+
+            
+         
+
+            // console.log(final[1]);
+            // console.log(final);
+           
 
 
 });
 
-const port = process.env.PORT || 3000 // Port we will listen on
+
+app.post('/final', async (req, res) => {
+    // Insert Login Code Here
+    // Insert Login Code Here
+
+    const browser= await puppeteer.launch({
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+        ]
+    });;
+
+    async function extractDataOfmedplusmartOg(medname) {
+        try {
+            // Fetching HTML
+            console.log('url:'+nameOfMed);
+          
+         
+        
+            const urlFormedplusMartOg = await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:medplusmart.com+${nameOfMed}&ad=dirN&o=0`);
+            console.log(urlFormedplusMartOg)
+            // await browser.close();
+            // console.log(data)
+            // await page.close();
+            // Using cheerio to extract <a> tags
+            const page1 = await browser.newPage();
+            await page1.goto(urlFormedplusMartOg, { waitUntil: 'networkidle2' });
+            var data= await page1.evaluate(() => document.querySelector('*').outerHTML); +"";
+            // await browser.close();
+    
+            const $ = cheerio.load(data);
+            var a = $('.mrp-details-div h2').text().trim();
+            if (!a) {
+                a = $('.mrp-details-div h3').text().trim();
+            }
+            if(a.includes('₹')){
+                a=a.split('₹')[1];
+            }
+            console.log('value of medplus'+a);
+            // a=a.split('MRP')[1].trim();//price
+    
+            var imgUrl = $('.zoomWindowContainer div').attr('style');
+            if(imgUrl){
+            if(imgUrl.includes('url("')){
+                imgUrl = imgUrl.split('url("')[1];
+            }
+            if(imgUrl.includes('")')){
+                imgUrl = imgUrl.split('")')[0];
+            }
+        }
+            var url="";
+            return {
+                name: 'MedPlusMart',
+                item: $('.composition-details h1').text().trim(),
+                price: a,
+                imgLink: imgUrl,
+                link: urlFormedplusMartOg,
+            }
+    
+        } catch (error) {
+            // res.sendFile(__dirname + '/try.html');
+            console.log(error);
+        }
+    }
+    async function extractDataOfDhani(medname) {
+        try {
+            // Fetching HTML
+         
+        const urlForDhani = await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:dhani.com+${nameOfMed}&ad=dirN&o=0`);
+        // await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:wellnessforever.com+${nameOfMed}&ad=dirN&o=0`);
+        
+        const page1 = await browser.newPage();
+        await page1.goto(urlForDhani, { waitUntil: 'networkidle2' });
+        var data= await page1.evaluate(() => document.querySelector('*').outerHTML); +"";
+        // await browser.close();
+        //    console.log(typeof(final.datafordhani));
+            const $ = cheerio.load(data);
+            // var a = $('.product-name').text().trim();
+          
+            // a=a.split('MRP')[1].trim();//price
+    
+            var imgUrl = $('.img-section img').attr('src');
+            var url="";
+            
+            return {
+                name: 'Dhani Pharmacy',
+                item: $('.product-name').text().trim(),
+                price: $('.price-area-txt--existing').first().text(),
+                imgLink: imgUrl,
+                link: urlForDhani,
+            }
+    
+        } catch (error) {
+            // res.sendFile(__dirname + '/try.html');
+            console.log(error);
+        }
+    
+    }
+    async function extractDataOfWelnessForever(medname) {
+        try {
+            // Fetching HTML
+         
+        const urlForWelnessForever = await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:wellnessforever.com+${nameOfMed}&ad=dirN&o=0`);
+        const page1 = await browser.newPage();
+        await page1.goto(urlForWelnessForever, { waitUntil: 'networkidle2' });
+        var data= await page1.evaluate(() => document.querySelector('*').outerHTML); +"";
+        // await browser.close();
+        //    console.log(typeof(final.datafordhani));
+            const $ = cheerio.load(data);
+          
+            var imgUrl = $('.ngxImageZoomContainer img').attr('src');
+            var price=$('.infoPrice').text();
+            if(price.includes('Rs')){
+                price=price.split('Rs')[1];
+            }
+            // var url="";
+            
+            return {
+                name: 'Wellness Forever',
+                item: $('.prdName').text().trim(),
+                price: price,
+                imgLink: imgUrl,
+                link: urlForWelnessForever,
+            }
+    
+        } catch (error) {
+            // res.sendFile(__dirname + '/try.html');
+            console.log(error);
+        }
+    }
+    async function extractDataOfPracto(urlForPracto) {
+        try {
+            // Fetching HTML
+         
+    
+            console.log("name->"+nameOfMed)
+        const urlForPracto = await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:practo.com+${nameOfMed}&ad=dirN&o=0`);
+        // await extractLinkFromyahoo(`https://in.search.yahoo.com/search;_ylt=?p=site:wellnessforever.com+${nameOfMed}&ad=dirN&o=0`);
+        
+        const page2 = await browser.newPage();
+        await page2.goto(urlForPracto, { waitUntil: 'networkidle2' });
+        var data= await page2.evaluate(() => document.querySelector('*').outerHTML); +"";
+        // await browser.close();
+        //    console.log(typeof(final.datafordhani));
+            const $ = cheerio.load(data);
+            console.log($.html());
+          
+            var imgUrl = $('.image-carousel--image_wrapper img').attr('src');
+            // var url="";
+            
+            return {
+                name: 'Practo',
+                item: $('.heading-alpha').text().trim(),
+                price: $('.heading-beta-bold').text(),
+                imgLink: imgUrl,
+                link: urlForPracto,
+            }
+    
+        } catch (error) {
+            // res.sendFile(__dirname + '/try.html');
+            console.log(error);
+        }
+    }
+
+
+    console.log('name of med =>' + nameOfMed[0])
+    await Promise.all([extractDataOfDhani(nameOfMed[0]),extractDataOfWelnessForever(nameOfMed[0]),extractDataOfmedplusmartOg(nameOfMed[0])])
+        .then(await axios.spread(async (...responses) => {
+            // console.log(...responses);
+
+            final.push(responses[0])
+            final.push(responses[1])
+            final.push(responses[2])
+           
+            // await extractSubsfApollo(final[final.length-1].link,final);
+
+        }))
+    
+        await browser.close();
+        final.sort((a, b) => a.name - b.name); // b - a for reverse sort
+        final.push(nameOfMed[0]);
+        // nameOfMed.pop();
+    
+    res.render('secondFinal', { final: final });
+
+})
+
+
+const port = process.env.PORT || 1000 // Port we will listen on
 
 // Function to listen on the port
 app.listen(port, () => console.log(`This app is listening on port ${port}`));
