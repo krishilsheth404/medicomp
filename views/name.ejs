@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js" charset="utf-8"></script>
+    
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <title>Medicomp</title>
@@ -139,7 +140,7 @@
     
     #msform .action-button {
         width: 100px;
-        background: #DA4453;
+        background: #4d94ff;
         font-weight: bold;
         color: white;
         border: 0 none;
@@ -151,7 +152,7 @@
     
     #msform .action-button:hover,
     #msform .action-button:focus {
-        box-shadow: 0 0 0 2px white, 0 0 0 3px #DA4453;
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #4d94ff;
     }
     /*headings*/
     
@@ -222,7 +223,7 @@
     
     #progressbar li.active:before,
     #progressbar li.active:after {
-        background: #DA4453;
+        background: #4d94ff;
         color: white;
     }
     
@@ -236,7 +237,7 @@
         }
         #msform .action-button {
             width: 90px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -257,7 +258,7 @@
         }
         #msform .action-button {
             width: 75px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -278,7 +279,7 @@
         }
         #msform .action-button {
             width: 70px;
-            background: #DA4453;
+            background: #4d94ff;
             font-weight: bold;
             color: white;
             border: 0 none;
@@ -317,15 +318,16 @@
             <h2 class="fs-title">Enter the Medicine Name</h2>
             <h3 class="fs-subtitle">For Comparison</h3>
             <input type="text" name="foodItem" placeholder="FoodItem" required id='foodItem' value='<%=final[final.length-1]%>' class='val4' autocomplete="off" />
-
+            
             <input type="button" name="next" class="next action-button" value="Next" id='fastBtn' />
         </fieldset>
-
+        
         <fieldset>
             <h2 class="fs-title">Lets Be More Specific</h2>
             <h3 class="fs-subtitle">Which One?</h3>
+            <!-- <input type="text" name="city" placeholder="City Name" required id='city' class='val4' autocomplete="off" /> -->
             <input type="text" style="display: none;" id='hiddenText'>
-            <select name='dataOfMed' id='dataOfMed' class='pulse'>
+            <select name='finalmed' id='finalmed' class='pulse'>
                 <option selected value="<%=final[final.length-1]%>"><%=final[final.length-1]%></option>
             <% for(var i=0; i < final.length-1; i++) { %>
                 <option value="<%=final[i]%>"><%=final[i]%></option>
@@ -346,7 +348,7 @@
             </center>
 
             <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="submit" name="submit" class="submit action-button" value="Start" id="form-submit" onclick="countdown()" />
+            <input type="submit" name="submit" class="submit action-button" value="Medicomp" id="form-submit" onclick="countdown()" />
         </fieldset>
     </form>
 
@@ -478,12 +480,12 @@
                 $(function() {
                     $('.chart').easyPieChart({
                         size: 50,
-                        barColor: "#DA4458",
+                        barColor: "#4d94ff",
                         scaleLength: 0,
                         lineWidth: 8,
                         trackColor: "lightgray",
                         lineCap: "circle",
-                        animate: 10000,
+                        animate: 15000,
                     });
                 });
 
@@ -502,7 +504,7 @@
                         clearInterval(a);
                     }
                 }
-                var a = setInterval(countF, 1000);
+                var a = setInterval(countF, 1200);
             }
         }
     </script>
