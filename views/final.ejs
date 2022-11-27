@@ -4,29 +4,51 @@
 <title>
     Medicomp | RESULTS FOUND !
 </title>
+<meta name="propeller" content="b6b666c61191339a339bfbceb39fb65a">
+
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6943409373544581" crossorigin="anonymous"></script> -->
 <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js'></script> -->
+<script>(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('agaenteitor.com', 5392771, document.createElement('script'))</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/glide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"
+    charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"
+    charset="utf-8"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.css">
+
+<link rel="stylesheet" type="text/css" href="/path/to/jquery.easy-pie-chart.css">
+
 
 <head>
     <style>
         .link {
             color: black;
         }
-        
+
         .link:hover {
             color: rgba(39, 39, 39, 0.719);
         }
-        
+
         .offers {
             color: gray;
             font-size: 13px;
         }
-        
+
         .pricesec {
             color: black;
             font-size: 15px;
+            width: 200px;
         }
-        
+
+        .namesec {
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
         .boxForFoodItem {
             width: 100%;
             max-width: 800px;
@@ -37,7 +59,7 @@
             background-color: white;
             box-shadow: 1px 1px 30px gray;
         }
-        
+
         .priceOnSwiggy,
         .priceOnZomato {
             font-family: monospace;
@@ -46,20 +68,21 @@
             font-size: 19px;
             margin-bottom: 0px;
         }
-        
+
         .nameOfItem {
             font-family: cursive;
+            width: 250px;
             font-size: 27px;
             color: rgb(255, 255, 255);
         }
-        
+
         .numberOfItem {
             position: absolute;
             top: 8px;
         }
-        
+
         .numberOfItemBox {
-            background-color: #DA4453;
+            background-color: #4d94ff;
             color: rgb(0, 0, 0);
             height: 104%;
             border-radius: 0px;
@@ -73,7 +96,7 @@
             left: -8px;
             font-size: 28px;
         }
-        
+
         .outOfTheBox {
             background-color: transparent;
             flex-basis: 51%;
@@ -82,7 +105,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .priceBox,
         .offers {
             height: auto;
@@ -93,7 +116,7 @@
             justify-content: center;
             flex-direction: column;
         }
-        
+
         .nameOfFoodItem {
             padding: 40px;
             padding-left: 20px;
@@ -105,7 +128,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         @media screen and (max-width:500px) {
             .boxForFoodItem {
                 width: 95%;
@@ -118,18 +141,21 @@
                 margin-top: 35px;
                 margin-bottom: 35px;
             }
+
             .priceOnSwiggy,
             .priceOnZomato {
                 font-size: 15px;
                 color: black;
                 margin: 10px;
             }
+
             .nameOfItem {
                 font-family: cursive;
                 font-size: 20px;
                 color: rgb(0, 0, 0);
                 margin-left: 50px;
             }
+
             .numberOfItem {
                 position: absolute;
                 top: 21px;
@@ -137,16 +163,19 @@
                 font-size: 23px;
                 text-align: center;
             }
+
             .offers {
                 color: gray;
                 font-size: 10px;
             }
+
             .pricesec {
                 color: black;
                 font-size: 13px;
             }
+
             .numberOfItemBox {
-                background-color: #DA4453;
+                background-color: #4d94ff;
                 color: rgb(255, 255, 255);
                 height: 70px;
                 border-radius: 200px;
@@ -160,6 +189,7 @@
                 left: -9px;
                 font-size: 28px;
             }
+
             .outOfTheBox {
                 width: 100%;
                 background-color: transparent;
@@ -169,20 +199,23 @@
                 align-items: center;
                 justify-content: center;
             }
+
             .priceOnSwiggy {
                 margin-right: 15px;
             }
+
             .priceBox,
             .offers {
                 text-align: right;
             }
+
             #swiggyOffersBox,
             .offers {
                 width: 200px;
                 height: auto;
             }
         }
-        
+
         @media screen and (min-width:500px)and (max-width:1000px) {
             .nameOfFoodItem {
                 padding: 40px;
@@ -198,6 +231,7 @@
                 margin-left: 20px;
                 margin-right: 20px;
             }
+
             .boxForFoodItem {
                 width: 95%;
                 max-width: 800px;
@@ -209,18 +243,21 @@
                 margin-top: 35px;
                 margin-bottom: 35px;
             }
+
             .priceOnSwiggy,
             .priceOnZomato {
                 font-size: 18px;
                 color: black;
                 margin: 10px;
             }
+
             .nameOfItem {
                 font-family: cursive;
                 font-size: 40px;
                 color: rgb(0, 0, 0);
                 margin-left: 50px;
             }
+
             .numberOfItem {
                 position: absolute;
                 top: 14px;
@@ -228,8 +265,9 @@
                 font-size: 40px;
                 text-align: center;
             }
+
             .numberOfItemBox {
-                background-color: #DA4453;
+                background-color: #4d94ff;
                 color: rgb(255, 255, 255);
                 height: 100px;
                 border-radius: 200px;
@@ -243,6 +281,7 @@
                 left: -16px;
                 font-size: 32px;
             }
+
             .outOfTheBox {
                 width: 100%;
                 background-color: transparent;
@@ -252,25 +291,43 @@
                 align-items: center;
                 justify-content: center;
             }
+
             .priceOnSwiggy {
                 margin-right: 15px;
             }
+
             .priceBox,
             .offers {
                 text-align: right;
                 font-size: 27px;
             }
+
             .pricesec {
                 color: black;
                 font-size: 30px;
             }
+
             #swiggyOffersBox,
             .offers {
                 width: 300px;
                 height: auto;
+                font-size: 22px;
             }
+
+            .pricesec {
+                font-size: 24px;
+            }
+
+            .priceBox img {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                bottom: 20px;
+                left: 0px;
+            }
+
         }
-        
+
         @media screen and (min-width:1000px) {
             .nameOfFoodItem {
                 padding: 40px;
@@ -285,26 +342,30 @@
                 margin-left: 40px;
                 margin-right: 40px;
             }
+
             .priceOnSwiggy,
             .priceOnZomato {
                 font-size: 22px;
                 color: black;
             }
+
             .nameOfItem {
                 font-family: cursive;
                 font-size: 24px;
                 color: rgb(0, 0, 0);
                 margin-left: 50px;
             }
+
             .numberOfItem {
                 position: absolute;
                 top: 45%;
                 font-size: 35px;
                 text-align: center;
-                transform: rotate( 90deg);
+                transform: rotate(90deg);
             }
+
             .numberOfItemBox {
-                background-color: #DA4453;
+                background-color: #4d94ff;
                 color: rgb(255, 255, 255);
                 height: 105%;
                 border-radius: 0px;
@@ -318,6 +379,7 @@
                 left: -8px;
                 font-size: 28px;
             }
+
             .outOfTheBox {
                 width: 520px;
                 background-color: transparent;
@@ -327,9 +389,10 @@
                 align-items: center;
                 justify-content: center;
             }
+
             .priceBox,
             .offers {
-                height: auto;
+                height: 150px;
                 margin: 15px;
                 width: 98%;
                 display: flex;
@@ -338,10 +401,132 @@
                 flex-direction: column;
                 text-align: right;
             }
+
             #swiggyOffersBox,
             .offers {
                 width: 300px;
                 height: auto;
+                font-size: 23px;
+            }
+
+            .pricesec {
+                font-size: 23px;
+            }
+
+            .priceBox img {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                bottom: 20px;
+                left: 100px;
+            }
+        }
+    </style>
+    <style>
+        #ImgOfShops {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 80px;
+            bottom: 5px;
+            margin: 30px;
+        }
+
+        .nameOfFoodItem {
+            margin-bottom: 100px;
+        }
+
+        @media screen and (min-width:10px)and (max-width:1000px) {
+            #ImgOfShops {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                left: 80px;
+                bottom: 5px;
+                margin: 30px;
+            }
+
+            .nameOfFoodItem {
+                margin-bottom: 200px;
+            }
+
+
+        }
+    </style>
+    <style>
+        #scrolling {
+            background-color: #3e3e3e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #scrolling:before,
+        #scrolling:after {
+            content: '';
+            display: block;
+            background-color: #3e3e3e;
+            width: 100%;
+            height: 75px;
+            position: absolute;
+            z-index: 99;
+        }
+
+        #scrolling:before {
+            border-radius: 0% 0% 50% 50% / 0% 0% 100% 100%;
+            top: 15px;
+        }
+
+        #scrolling:after {
+            border-radius: 50% 50% 0% 0% / 100% 100% 0% 0%;
+            bottom: 15px;
+        }
+
+        .glide__slides {
+            display: flex;
+        }
+
+        .glide__slide {
+            width: initial;
+        }
+    </style>
+    <style>
+        .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .glide__slide {
+            line-height: 100px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .action-button:hover,
+        .action-button:focus {
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #4d94ff;
+        }
+
+        .notvisible {
+            visibility: hidden;
+            width: 0px;
+            padding: 0px;
+            margin: -5px;
+        }
+    </style>
+       <style>
+        .skeleton {
+            animation: skeleton-loading 1s linear infinite alternate;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-color: gray;
+                color: gray
+            }
+
+            100% {
+                background-color: lightgray;
+                color: lightgray;
             }
         }
     </style>
@@ -386,731 +571,1032 @@
             </ol>
             </p>
             <%}%>
-                <%}%>
+                <%}%>x
         </span>
                     </span> -->
 
+            <% for(var i=0; i < final.length; i++) { %>
+                <%if(final[i].type) {%>
+                    <%count=i%>
+                        <%}%>
+                            <%}%>
+                                <section>
+
+                                    <!-- <div id='itemsDisplayBox'
+                                        style="height: auto;width: 100%;background-color: transparent;display: flex;align-items:center;justify-content: center;flex-wrap:wrap;">
+                                        <a href="<%=final[count].link%>" target='_blank'
+                                            style="text-decoration: underline;color:gray;">
+                                            <div class="outOfTheBox" value="final[i].price" id="price">
+                                                <div class="boxForFoodItem">
+                                                    <div class="numberOfItemBox">
+                                                        <span class="numberOfItem">
+                                                            <%=final[count].type%>
+                                                        </span>
+                                                    </div>
+
+                                                    <span>
+                                                        <div class="nameOfFoodItem">
+                                                            <span class="nameOfItem"
+                                                                style="color:black;font-family: 'Courier New', Courier, monospace;text-transform: uppercase;font-weight: bold;">
+                                                                <%=final[count].name%>
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="priceBox"
+                                                            style="color: gray;text-decoration: gray;">
+                                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkUXZEGnWKtlPtgo13PsxvMuj7WHOz9RI4uw&usqp=CAU"
+                                                                id="ImgOfShops">
+                                                            <span class='offers'>
+                                                                <%=final[count].item%>
+                                                                    <span class='pricesec'>
+
+                                                                        <%=final[count].price%><br>
+                                                                            <a href="tel:<%=final[count].number%>"
+                                                                                style="padding-right: 20px;">Call :
+                                                                                <%=final[count].number%>
+                                                                            </a>
+                                                                    </span>
+                                                            </span>
+
+                                                        </div>
+                                                    </span>
+                                        </a>
+
+                                    </div> -->
+                                </section>
 
 
 
 
 
 
+                                <section>
+
+                                    <div id='itemsDisplayBox'
+                                        style="height: auto;width: 100%;background-color: transparent;display: flex;align-items:center;justify-content: center;flex-wrap:wrap;">
+                                        <% for(var i=0; i < final.length; i++) { %>
+                                            <% if(final[i].item) {itemCount++;%>
+
+                                                <a href="<%=final[i].link%>" target='_blank'
+                                                    style="text-decoration: underline;color:gray;">
+                                                    <div class="outOfTheBox" value="final[i].price" id="price">
+                                                        <div class="boxForFoodItem">
+                                                            <div class="numberOfItemBox">
+                                                                <span class="numberOfItem">
+                                                                    <%=itemCount%>
+                                                                </span>
+                                                            </div>
+
+                                                            <span>
+                                                                <div class="nameOfFoodItem" style="margin-bottom: 0px">
+                                                                    <span class="nameOfItem"
+                                                                        style="color:black;font-family: 'Courier New', Courier, monospace;text-transform: uppercase;font-weight: bold;">
+                                                                        <%=final[i].name%>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="priceBox"
+                                                                    style="color: gray;text-decoration: gray;">
+                                                                    <img src="<%=final[i].imgLink%>"
+                                                                        style="width:150px;height: 150px;position: absolute;left: 80px;bottom:5px">
+                                                                    <span class='offers'>
+                                                                        <%=final[i].item%>
+                                                                            <span class='pricesec'>
+                                                                                ₹ <%=final[i].price%>
+                                                                            </span>
+                                                                    </span>
+                                                                </div>
+                                                </a>
 
 
-
-
-
-            <div id='itemsDisplayBox' style="height: auto;width: 100%;background-color: transparent;display: flex;align-items:center;justify-content: center;flex-wrap:wrap;">
-                <% for(var i=0; i < final.length; i++) { %>
-
-                    <%if(final[i].item) {itemCount++;%>
-                        <!-- <a href="<%=final[i].link%>" target='_blank' style="text-decoration: underline;color:gray;">
-                            <div class="outOfTheBox" id="price" >
-                                <div class="boxForFoodItem">
-                                    <div class="numberOfItemBox">
-                                        <span class="numberOfItem"><%=i%></span>
                                     </div>
+                                    </div>
+                                    <%}%>
+                                        <%}%>
 
-                                <span>
-                                    <div class="nameOfFoodItem">
-                                        <span class="nameOfItem" style="color:black;font-family: 'Courier New', Courier, monospace;text-transform: uppercase;font-weight: bold;"><%=final[i].name%></span>
-                                </div>
+                                </section>
 
-                                <div class="priceBox" style="color: gray;text-decoration: gray;">
-                                    <img src="<%=final[i].imgLink%>" style="width:100px;height: 100px;position: absolute;left: 80px;bottom:5px">
-                                    <span class='offers'>
-                                       <%=final[i].item%>   
-                                      <span class='pricesec'>
-                                         <%=final[i].price%>
-                                        </span>
+                                <section id="skeleton-class" style="display:none">
+
+                                    <div id='itemsDisplayBox'
+                                        style="height: auto;width: 100%;background-color: transparent;display: flex;align-items:center;justify-content: center;flex-wrap:wrap;">
+                                        <% for(var i=0; i < 3; i++) { %>
+                                          
+                                        <a href="#" target='_blank' style="text-decoration: underline;color:gray;">
+                                            <div class="outOfTheBox" value="#" id="">
+                                                <div class="boxForFoodItem">
+                                                    <div class="numberOfItemBox ">
+                                                        <span class="numberOfItem skeleton">
+                                                            .
+                                                        </span>
+                                                    </div>
+
+                                                    <span>
+                                                        <div class="nameOfFoodItem ">
+                                                            <span class="nameOfItem skeleton">
+                                                                .
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="priceBox ">
+                                                            <img src="#"
+                                                                style="width:100px;height: 100px;position: absolute;left: 80px;bottom:5px"
+                                                                class="skeleton">
+                                                            <span class='offers '>
+                                                                <span class='namesec skeleton'>
+                                                                    Name
+                                                                </span>
+                                                                <span class='pricesec skeleton'>
+                                                                    ₹
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                        </a>
+
+
+                                        </div>
+                                        </div>
+                                        <%}%>
+
+                                </section>
+
+
+                                <section>
+
+                                    <!-- <center>
+                                        
+                                        <section>
+                                            
+                                            <form id="research" action="/final" method="POST">
+                                                <div class="chart" id='design' data-percent="100"
+                                        style="position: relative;width:50px;height:50px;font-size: 12px;display: none;">
+                                        <span id='counter'
+                                        style="color:#888787;font-size:bold;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+                                        0%
+                                    </span>
                                 </div>
+                                
+                                
+                                
+                                        <input type="submit" id="form-submit_1" style="width:0px;height:0px">
+                                    </form>
                                     
-                                    
-                                </span>
-                            </div>
-                            </div>
+                                </section>
+                                
+                            </center> -->
                             
-                        </a> -->
-                        <a href="<%=final[i].link%>" target='_blank' style="text-decoration: underline;color:gray;">
-                            <div class="outOfTheBox" value="final[i].price" id="price" >
-                                <div class="boxForFoodItem">
-                                    <div class="numberOfItemBox">
-                                        <span class="numberOfItem"><%=i+1%></span>
+
+
+                            <!-- <center>
+                                <button id="loadmore" onclick="countdown(this.id)" style="width: 100px; 
+                                background: #4d94ff;
+                                font-weight: bold;
+                                color: white;
+                                border: 0 none;
+                                border-radius: 1px;
+                                cursor: pointer;
+                                padding: 30px 10px;
+                                margin: 10px 5px;
+                                margin-bottom: 50px;">Load More?</button>
+                                  
+                        </center> -->
+                        
+                    </section>
+
+
+
+
+                                <div
+                                style="font-family: monospace;text-transform:uppercase;font-size: 35px;margin: 40px;">
+                                PRODUCT SUBSTITUTES
+                            </div>
+
+
+                                <section>
+                                    <div id='' class="glide multi">
+                                        <div class="glide__track" data-glide-el="track">
+                                            <ul class="glide__slides">
+                                                <% for(var k=0; k < final.length; k++) { %>
+                                                    <% if(final[k].subsname) {itemCount++;%>
+
+                                                        <li class="glide__slide">
+                                                            <div class="" value="<%=final[k].price%>" id="price">
+                                                                <div class="boxForFoodItem" style="width:auto">
+                                                                    <div class="numberOfItemBox">
+                                                                        <span class="numberOfItem"
+                                                                            style="font-size:35px">
+                                                                            Subs
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <span>
+                                                                        <div class="nameOfFoodItem" style="margin-bottom: 0px;height: auto;line-height: 1;">
+                                                                            <span class="nameOfItem"
+                                                                                style="color:black;font-family: 'Courier New', Courier, monospace;text-transform: uppercase;font-weight: bold;">
+                                                                                <%=final[k].subsname%>
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <div class="priceBox"
+                                                                            style="color: gray;text-decoration: gray;">
+                                                                            <img src="<%=final[k].subsImgLink%>"
+                                                                                >
+                                                                            <span class='offers'>
+                                                                                <span class='pricesec'
+                                                                                    style="font-size:25px">
+                                                                                    <%=final[k].subsprice%> <br>
+
+                                                                                
+                                                                                </span>
+                                                                                <span>
+                                                                                    <form id="ReSearchForm"
+                                                                                    action="/result" method="POST" style="display:flex"
+                                                                                   >
+                                                                                    <input type="text"
+                                                                                        name='dataOfMed'
+                                                                                        id='dataOfMed' class='pulse'
+                                                                                        value="<%=final[k].subsname%>"
+                                                                                        style="visibility:hidden;">
+
+                                                                                    <p style="font-family: inherit;font-size: 14px;"
+                                                                                        id='dataTitle'></p>
+                                                                         
+                                                                                        <div class="chart"
+                                                                                            id='design<%=final[k].subsname%>'
+                                                                                            data-percent="100"
+                                                                                            style="position: relative;width:50px;height:50px;font-size: 12px;display: none;">
+                                                                                            <span id='counter<%=final[k].subsname%>'
+                                                                                                style="color:#888787;font-size:bold;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+                                                                                                0%
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                    <input type="submit"
+                                                                                        value="Medicomp" style="width: 100px; 
+                                                                                        background: #4d94ff;
+                                                                                        font-weight: bold;
+                                                                                        color: white;
+                                                                                        border: 0 none;
+                                                                                        border-radius: 1px;
+                                                                                        cursor: pointer;
+                                                                                        padding: 30px 10px;
+                                                                                        margin: 10px 5px;
+                                                                                        margin-bottom: 50px;"
+                                                                                        id="form-submit_<%=final[k].subsname%>" >
+                                                                                </form>
+                                                                                </span>
+                                                                        </div>
+
+                                                        </li>
+
+                                                        <%}%>
+                                                            <%}%>
+                                                                </span>
+
+                                        </div>
+
                                     </div>
+                                    </ul>
+                                    </div>
+                                </section>
 
-                                    <span>
-                                    <div class="nameOfFoodItem">
-                                        <span class="nameOfItem" style="color:black;font-family: 'Courier New', Courier, monospace;text-transform: uppercase;font-weight: bold;"><%=final[i].name%></span>
-                                </div>
+                             
+                               
 
-                                <div class="priceBox" style="color: gray;text-decoration: gray;">
-                                    <img src="<%=final[i].imgLink%>" style="width:100px;height: 100px;position: absolute;left: 80px;bottom:5px">
-                                    <span class='offers'>
-                                        <%=final[i].item%>   
-                                       <span class='pricesec'>
-                                          <%=final[i].price%>
-                                         </span>
-                                </div>
-                        </a>
-                        </span>
 
-            </div>
+                              
 
-        </div>
-        <%}%>
-<%}%>
-                
-                    
-                    <script>
-                        jQuery.easing.jswing = jQuery.easing.swing;
-                        jQuery.extend(jQuery.easing, {
-                            def: "easeOutQuad",
-                            swing: function(e, f, a, h, g) {
-                                return jQuery.easing[jQuery.easing.def](e, f, a, h, g)
-                            },
-                            easeInQuad: function(e, f, a, h, g) {
-                                return h * (f /= g) * f + a
-                            },
-                            easeOutQuad: function(e, f, a, h, g) {
-                                return -h * (f /= g) * (f - 2) + a
-                            },
-                            easeInOutQuad: function(e, f, a, h, g) {
-                                if ((f /= g / 2) < 1) {
-                                    return h / 2 * f * f + a
-                                }
-                                return -h / 2 * ((--f) * (f - 2) - 1) + a
-                            },
-                            easeInCubic: function(e, f, a, h, g) {
-                                return h * (f /= g) * f * f + a
-                            },
-                            easeOutCubic: function(e, f, a, h, g) {
-                                return h * ((f = f / g - 1) * f * f + 1) + a
-                            },
-                            easeInOutCubic: function(e, f, a, h, g) {
-                                if ((f /= g / 2) < 1) {
-                                    return h / 2 * f * f * f + a
-                                }
-                                return h / 2 * ((f -= 2) * f * f + 2) + a
-                            },
-                            easeInQuart: function(e, f, a, h, g) {
-                                return h * (f /= g) * f * f * f + a
-                            },
-                            easeOutQuart: function(e, f, a, h, g) {
-                                return -h * ((f = f / g - 1) * f * f * f - 1) + a
-                            },
-                            easeInOutQuart: function(e, f, a, h, g) {
-                                if ((f /= g / 2) < 1) {
-                                    return h / 2 * f * f * f * f + a
-                                }
-                                return -h / 2 * ((f -= 2) * f * f * f - 2) + a
-                            },
-                            easeInQuint: function(e, f, a, h, g) {
-                                return h * (f /= g) * f * f * f * f + a
-                            },
-                            easeOutQuint: function(e, f, a, h, g) {
-                                return h * ((f = f / g - 1) * f * f * f * f + 1) + a
-                            },
-                            easeInOutQuint: function(e, f, a, h, g) {
-                                if ((f /= g / 2) < 1) {
-                                    return h / 2 * f * f * f * f * f + a
-                                }
-                                return h / 2 * ((f -= 2) * f * f * f * f + 2) + a
-                            },
-                            easeInSine: function(e, f, a, h, g) {
-                                return -h * Math.cos(f / g * (Math.PI / 2)) + h + a
-                            },
-                            easeOutSine: function(e, f, a, h, g) {
-                                return h * Math.sin(f / g * (Math.PI / 2)) + a
-                            },
-                            easeInOutSine: function(e, f, a, h, g) {
-                                return -h / 2 * (Math.cos(Math.PI * f / g) - 1) + a
-                            },
-                            easeInExpo: function(e, f, a, h, g) {
-                                return (f == 0) ? a : h * Math.pow(2, 10 * (f / g - 1)) + a
-                            },
-                            easeOutExpo: function(e, f, a, h, g) {
-                                return (f == g) ? a + h : h * (-Math.pow(2, -10 * f / g) + 1) + a
-                            },
-                            easeInOutExpo: function(e, f, a, h, g) {
-                                if (f == 0) {
-                                    return a
-                                }
-                                if (f == g) {
-                                    return a + h
-                                }
-                                if ((f /= g / 2) < 1) {
-                                    return h / 2 * Math.pow(2, 10 * (f - 1)) + a
-                                }
-                                return h / 2 * (-Math.pow(2, -10 * --f) + 2) + a
-                            },
-                            easeInCirc: function(e, f, a, h, g) {
-                                return -h * (Math.sqrt(1 - (f /= g) * f) - 1) + a
-                            },
-                            easeOutCirc: function(e, f, a, h, g) {
-                                return h * Math.sqrt(1 - (f = f / g - 1) * f) + a
-                            },
-                            easeInOutCirc: function(e, f, a, h, g) {
-                                if ((f /= g / 2) < 1) {
-                                    return -h / 2 * (Math.sqrt(1 - f * f) - 1) + a
-                                }
-                                return h / 2 * (Math.sqrt(1 - (f -= 2) * f) + 1) + a
-                            },
-                            easeInElastic: function(f, h, e, l, k) {
-                                var i = 1.70158;
-                                var j = 0;
-                                var g = l;
-                                if (h == 0) {
-                                    return e
-                                }
-                                if ((h /= k) == 1) {
-                                    return e + l
-                                }
-                                if (!j) {
-                                    j = k * 0.3
-                                }
-                                if (g < Math.abs(l)) {
-                                    g = l;
-                                    var i = j / 4
-                                } else {
-                                    var i = j / (2 * Math.PI) * Math.asin(l / g)
-                                }
-                                return -(g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
-                            },
-                            easeOutElastic: function(f, h, e, l, k) {
-                                var i = 1.70158;
-                                var j = 0;
-                                var g = l;
-                                if (h == 0) {
-                                    return e
-                                }
-                                if ((h /= k) == 1) {
-                                    return e + l
-                                }
-                                if (!j) {
-                                    j = k * 0.3
-                                }
-                                if (g < Math.abs(l)) {
-                                    g = l;
-                                    var i = j / 4
-                                } else {
-                                    var i = j / (2 * Math.PI) * Math.asin(l / g)
-                                }
-                                return g * Math.pow(2, -10 * h) * Math.sin((h * k - i) * (2 * Math.PI) / j) + l + e
-                            },
-                            easeInOutElastic: function(f, h, e, l, k) {
-                                var i = 1.70158;
-                                var j = 0;
-                                var g = l;
-                                if (h == 0) {
-                                    return e
-                                }
-                                if ((h /= k / 2) == 2) {
-                                    return e + l
-                                }
-                                if (!j) {
-                                    j = k * (0.3 * 1.5)
-                                }
-                                if (g < Math.abs(l)) {
-                                    g = l;
-                                    var i = j / 4
-                                } else {
-                                    var i = j / (2 * Math.PI) * Math.asin(l / g)
-                                }
-                                if (h < 1) {
-                                    return -0.5 * (g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
-                                }
-                                return g * Math.pow(2, -10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j) * 0.5 + l + e
-                            },
-                            easeInBack: function(e, f, a, i, h, g) {
-                                if (g == undefined) {
-                                    g = 1.70158
-                                }
-                                return i * (f /= h) * f * ((g + 1) * f - g) + a
-                            },
-                            easeOutBack: function(e, f, a, i, h, g) {
-                                if (g == undefined) {
-                                    g = 1.70158
-                                }
-                                return i * ((f = f / h - 1) * f * ((g + 1) * f + g) + 1) + a
-                            },
-                            easeInOutBack: function(e, f, a, i, h, g) {
-                                if (g == undefined) {
-                                    g = 1.70158
-                                }
-                                if ((f /= h / 2) < 1) {
-                                    return i / 2 * (f * f * (((g *= (1.525)) + 1) * f - g)) + a
-                                }
-                                return i / 2 * ((f -= 2) * f * (((g *= (1.525)) + 1) * f + g) + 2) + a
-                            },
-                            easeInBounce: function(e, f, a, h, g) {
-                                return h - jQuery.easing.easeOutBounce(e, g - f, 0, h, g) + a
-                            },
-                            easeOutBounce: function(e, f, a, h, g) {
-                                if ((f /= g) < (1 / 2.75)) {
-                                    return h * (7.5625 * f * f) + a
-                                } else {
-                                    if (f < (2 / 2.75)) {
-                                        return h * (7.5625 * (f -= (1.5 / 2.75)) * f + 0.75) + a
-                                    } else {
-                                        if (f < (2.5 / 2.75)) {
-                                            return h * (7.5625 * (f -= (2.25 / 2.75)) * f + 0.9375) + a
-                                        } else {
-                                            return h * (7.5625 * (f -= (2.625 / 2.75)) * f + 0.984375) + a
-                                        }
-                                    }
-                                }
-                            },
-                            easeInOutBounce: function(e, f, a, h, g) {
-                                if (f < g / 2) {
-                                    return jQuery.easing.easeInBounce(e, f * 2, 0, h, g) * 0.5 + a
-                                }
-                                return jQuery.easing.easeOutBounce(e, f * 2 - g, 0, h, g) * 0.5 + h * 0.5 + a
-                            }
-                        });
-                    </script>
-                    <script>
-                        (function(name, factory) {
-                            if (typeof window === 'object') {
-                                window[name] = factory()
-                            }
-                        })('Ribbons', function() {
-                            var _w = window,
-                                _b = document.body,
-                                _d = document.documentElement
+<script>
 
-                            // random helper
-                            var random = function() {
-                                if (arguments.length === 1) {
-                                    // only 1 argument
-                                    if (Array.isArray(arguments[0])) {
-                                        // extract index from array
-                                        var index = Math.round(random(0, arguments[0].length - 1))
-                                        return arguments[0][index]
-                                    }
-                                    return random(0, arguments[0]) // assume numeric
-                                } else if (arguments.length === 2) {
-                                    // two arguments range
-                                    return Math.random() * (arguments[1] - arguments[0]) + arguments[0]
-                                } else if (arguments.length === 4) {
-                                    //
+    // document.getElementById('form-submit_1').click();
+    function countdown(z) {
+        document.getElementById('skeleton-class').style.display='block';
+        console.log(z);
+        var p = z.split('_')[1];
+        console.log(p);
+        var cid = document.getElementById(`counter`);
 
-                                    var array = [arguments[0], arguments[1], arguments[2], arguments[3]]
-                                    return array[Math.floor(Math.random() * array.length)]
-                                        //return console.log(item)
-                                }
-                                return 0 // default
-                            }
+        // console.log('clicked.'+this.id);
+        // let freezeClic = true; // just modify that variable to disable all clics events
 
-                            // screen helper
-                            var screenInfo = function(e) {
-                                var width = Math.max(
-                                        0,
-                                        _w.innerWidth || _d.clientWidth || _b.clientWidth || 0
-                                    ),
-                                    height = Math.max(
-                                        0,
-                                        _w.innerHeight || _d.clientHeight || _b.clientHeight || 0
-                                    ),
-                                    scrollx =
-                                    Math.max(0, _w.pageXOffset || _d.scrollLeft || _b.scrollLeft || 0) -
-                                    (_d.clientLeft || 0),
-                                    scrolly =
-                                    Math.max(0, _w.pageYOffset || _d.scrollTop || _b.scrollTop || 0) -
-                                    (_d.clientTop || 0)
+        // document.addEventListener("click", freezeClicFn, true);
 
-                                return {
-                                    width: width,
-                                    height: height,
-                                    ratio: width / height,
-                                    centerx: width / 2,
-                                    centery: height / 2,
-                                    scrollx: scrollx,
-                                    scrolly: scrolly
-                                }
-                            }
+        // function freezeClicFn(e) {
+        //     if (freezeClic) {
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //     }
+        // }
+        document.getElementById(z).style = 'visibility:hidden;width:0px;padding:0px;margin:-5px';
+        document.getElementById(z).value = '';
 
-                            // mouse/input helper
-                            var mouseInfo = function(e) {
-                                var screen = screenInfo(e),
-                                    mousex = e ? Math.max(0, e.pageX || e.clientX || 0) : 0,
-                                    mousey = e ? Math.max(0, e.pageY || e.clientY || 0) : 0
+        document.getElementById(`design`).style.display = 'block';
+        $(function () {
+            $(`.chart`).easyPieChart({
+                size: 50,
+                barColor: "#4d94ff",
+                scaleLength: 0,
+                lineWidth: 8,
+                trackColor: "lightgray",
+                lineCap: "circle",
+                animate: 15000,
+            });
+        });
 
-                                return {
-                                    mousex: mousex,
-                                    mousey: mousey,
-                                    centerx: mousex - screen.width / 2,
-                                    centery: mousey - screen.height / 2
-                                }
-                            }
+        var count = 0,
+            flag = 0;
 
-                            // point object
-                            var Point = function(x, y) {
-                                this.x = 0
-                                this.y = 0
-                                this.set(x, y)
-                            }
-                            Point.prototype = {
-                                constructor: Point,
+        function countF() {
+            if (count < 90) {
+                count += 10;
+                cid.innerHTML = count + '%';
+                console.log(cid.innerHTML);
+            } else {
+                setTimeout(() => {
+                    cid = 100 + '%';
+                }, 1000);
+                clearInterval(a);
+            }
+        }
+        var a = setInterval(countF, 1200);
+       
+    }
 
-                                set: function(x, y) {
-                                    this.x = x || 0
-                                    this.y = y || 0
-                                },
-                                copy: function(point) {
-                                    this.x = point.x || 0
-                                    this.y = point.y || 0
-                                    return this
-                                },
-                                multiply: function(x, y) {
-                                    this.x *= x || 1
-                                    this.y *= y || 1
-                                    return this
-                                },
-                                divide: function(x, y) {
-                                    this.x /= x || 1
-                                    this.y /= y || 1
-                                    return this
-                                },
-                                add: function(x, y) {
-                                    this.x += x || 0
-                                    this.y += y || 0
-                                    return this
-                                },
-                                subtract: function(x, y) {
-                                    this.x -= x || 0
-                                    this.y -= y || 0
-                                    return this
-                                },
-                                clampX: function(min, max) {
-                                    this.x = Math.max(min, Math.min(this.x, max))
-                                    return this
-                                },
-                                clampY: function(min, max) {
-                                    this.y = Math.max(min, Math.min(this.y, max))
-                                    return this
-                                },
-                                flipX: function() {
-                                    this.x *= -1
-                                    return this
-                                },
-                                flipY: function() {
-                                    this.y *= -1
-                                    return this
-                                }
-                            }
-
-                            // class constructor
-                            var Factory = function(options) {
-                                this._canvas = null
-                                this._context = null
-                                this._sto = null
-                                this._width = 0
-                                this._height = 0
-                                this._scroll = 0
-                                this._ribbons = []
-                                this._options = {
-                                    // ribbon color HSL saturation amount
-                                    colorSaturation: '0%',
-                                    // ribbon color HSL brightness amount
-                                    colorBrightness: '0%',
-                                    // ribbon color opacity amount
-                                    colorAlpha: 0.65,
-                                    // how fast to cycle through colors in the HSL color space
-                                    colorCycleSpeed: 6,
-                                    // where to start from on the Y axis on each side (top|min, middle|center, bottom|max, random)
-                                    verticalPosition: 'center',
-                                    // how fast to get to the other side of the screen
-                                    horizontalSpeed: 150,
-                                    // how many ribbons to keep on screen at any given time
-                                    ribbonCount: 3,
-                                    // add stroke along with ribbon fill colors
-                                    strokeSize: 0,
-                                    // move ribbons vertically by a factor on page scroll
-                                    parallaxAmount: -0.5,
-                                    // add animation effect to each ribbon section over time
-                                    animateSections: true
-                                }
-                                this._onDraw = this._onDraw.bind(this)
-                                this._onResize = this._onResize.bind(this)
-                                this._onScroll = this._onScroll.bind(this)
-                                this.setOptions(options)
-                                this.init()
-                            }
-
-                            // class prototype
-                            Factory.prototype = {
-                                constructor: Factory,
-
-                                // Set and merge local options
-                                setOptions: function(options) {
-                                    if (typeof options === 'object') {
-                                        for (var key in options) {
-                                            if (options.hasOwnProperty(key)) {
-                                                this._options[key] = options[key]
+    var glide = new Glide('#intro', {
+                                        type: 'carousel',
+                                        perView: 4,
+                                        focusAt: 'center',
+                                        breakpoints: {
+                                            800: {
+                                                perView: 2
+                                            },
+                                            480: {
+                                                perView: 1
                                             }
                                         }
-                                    }
-                                },
+                                    })
 
-                                // Initialize the ribbons effect
-                                init: function() {
-                                    try {
-                                        this._canvas = document.createElement('canvas')
-                                        this._canvas.style['display'] = 'block'
-                                        this._canvas.style['position'] = 'fixed'
-                                        this._canvas.style['margin'] = '0'
-                                        this._canvas.style['padding'] = '0'
-                                        this._canvas.style['border'] = '0'
-                                        this._canvas.style['outline'] = '0'
-                                        this._canvas.style['left'] = '0'
-                                        this._canvas.style['top'] = '0'
-                                        this._canvas.style['width'] = '100%'
-                                        this._canvas.style['height'] = '100%'
-                                        this._canvas.style['z-index'] = '-1'
-                                        this._onResize()
+                                    var glideMulti = new Glide('.multi', {
+                                        type: 'slider',
+                                        // autoplay: 2000,
+                                        focusAt: 'center',
+                                        perView: 2
+                                    });
 
-                                        this._context = this._canvas.getContext('2d')
-                                        this._context.clearRect(0, 0, this._width, this._height)
-                                        this._context.globalAlpha = this._options.colorAlpha
+                                    glideMulti.mount();
 
-                                        window.addEventListener('resize', this._onResize)
-                                        window.addEventListener('scroll', this._onScroll)
-                                        document.body.appendChild(this._canvas)
-                                    } catch (e) {
-                                        console.warn('Canvas Context Error: ' + e.toString())
-                                        return
-                                    }
-                                    this._onDraw()
-                                },
+                                    glide.mount()
+</script>
 
-                                // Create a new random ribbon and to the list
-                                addRibbon: function() {
-                                    // movement data
-                                    var dir = Math.round(random(1, 9)) > 5 ? 'right' : 'left',
-                                        stop = 1000,
-                                        hide = 200,
-                                        min = 0 - hide,
-                                        max = this._width + hide,
-                                        movex = 0,
-                                        movey = 0,
-                                        startx = dir === 'right' ? min : max,
-                                        starty = Math.round(random(0, this._height))
+<script>
+    jQuery.easing.jswing = jQuery.easing.swing;
+    jQuery.extend(jQuery.easing, {
+        def: "easeOutQuad",
+        swing: function (e, f, a, h, g) {
+            return jQuery.easing[jQuery.easing.def](e, f, a, h, g)
+        },
+        easeInQuad: function (e, f, a, h, g) {
+            return h * (f /= g) * f + a
+        },
+        easeOutQuad: function (e, f, a, h, g) {
+            return -h * (f /= g) * (f - 2) + a
+        },
+        easeInOutQuad: function (e, f, a, h, g) {
+            if ((f /= g / 2) < 1) {
+                return h / 2 * f * f + a
+            }
+            return -h / 2 * ((--f) * (f - 2) - 1) + a
+        },
+        easeInCubic: function (e, f, a, h, g) {
+            return h * (f /= g) * f * f + a
+        },
+        easeOutCubic: function (e, f, a, h, g) {
+            return h * ((f = f / g - 1) * f * f + 1) + a
+        },
+        easeInOutCubic: function (e, f, a, h, g) {
+            if ((f /= g / 2) < 1) {
+                return h / 2 * f * f * f + a
+            }
+            return h / 2 * ((f -= 2) * f * f + 2) + a
+        },
+        easeInQuart: function (e, f, a, h, g) {
+            return h * (f /= g) * f * f * f + a
+        },
+        easeOutQuart: function (e, f, a, h, g) {
+            return -h * ((f = f / g - 1) * f * f * f - 1) + a
+        },
+        easeInOutQuart: function (e, f, a, h, g) {
+            if ((f /= g / 2) < 1) {
+                return h / 2 * f * f * f * f + a
+            }
+            return -h / 2 * ((f -= 2) * f * f * f - 2) + a
+        },
+        easeInQuint: function (e, f, a, h, g) {
+            return h * (f /= g) * f * f * f * f + a
+        },
+        easeOutQuint: function (e, f, a, h, g) {
+            return h * ((f = f / g - 1) * f * f * f * f + 1) + a
+        },
+        easeInOutQuint: function (e, f, a, h, g) {
+            if ((f /= g / 2) < 1) {
+                return h / 2 * f * f * f * f * f + a
+            }
+            return h / 2 * ((f -= 2) * f * f * f * f + 2) + a
+        },
+        easeInSine: function (e, f, a, h, g) {
+            return -h * Math.cos(f / g * (Math.PI / 2)) + h + a
+        },
+        easeOutSine: function (e, f, a, h, g) {
+            return h * Math.sin(f / g * (Math.PI / 2)) + a
+        },
+        easeInOutSine: function (e, f, a, h, g) {
+            return -h / 2 * (Math.cos(Math.PI * f / g) - 1) + a
+        },
+        easeInExpo: function (e, f, a, h, g) {
+            return (f == 0) ? a : h * Math.pow(2, 10 * (f / g - 1)) + a
+        },
+        easeOutExpo: function (e, f, a, h, g) {
+            return (f == g) ? a + h : h * (-Math.pow(2, -10 * f / g) + 1) + a
+        },
+        easeInOutExpo: function (e, f, a, h, g) {
+            if (f == 0) {
+                return a
+            }
+            if (f == g) {
+                return a + h
+            }
+            if ((f /= g / 2) < 1) {
+                return h / 2 * Math.pow(2, 10 * (f - 1)) + a
+            }
+            return h / 2 * (-Math.pow(2, -10 * --f) + 2) + a
+        },
+        easeInCirc: function (e, f, a, h, g) {
+            return -h * (Math.sqrt(1 - (f /= g) * f) - 1) + a
+        },
+        easeOutCirc: function (e, f, a, h, g) {
+            return h * Math.sqrt(1 - (f = f / g - 1) * f) + a
+        },
+        easeInOutCirc: function (e, f, a, h, g) {
+            if ((f /= g / 2) < 1) {
+                return -h / 2 * (Math.sqrt(1 - f * f) - 1) + a
+            }
+            return h / 2 * (Math.sqrt(1 - (f -= 2) * f) + 1) + a
+        },
+        easeInElastic: function (f, h, e, l, k) {
+            var i = 1.70158;
+            var j = 0;
+            var g = l;
+            if (h == 0) {
+                return e
+            }
+            if ((h /= k) == 1) {
+                return e + l
+            }
+            if (!j) {
+                j = k * 0.3
+            }
+            if (g < Math.abs(l)) {
+                g = l;
+                var i = j / 4
+            } else {
+                var i = j / (2 * Math.PI) * Math.asin(l / g)
+            }
+            return -(g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
+        },
+        easeOutElastic: function (f, h, e, l, k) {
+            var i = 1.70158;
+            var j = 0;
+            var g = l;
+            if (h == 0) {
+                return e
+            }
+            if ((h /= k) == 1) {
+                return e + l
+            }
+            if (!j) {
+                j = k * 0.3
+            }
+            if (g < Math.abs(l)) {
+                g = l;
+                var i = j / 4
+            } else {
+                var i = j / (2 * Math.PI) * Math.asin(l / g)
+            }
+            return g * Math.pow(2, -10 * h) * Math.sin((h * k - i) * (2 * Math.PI) / j) + l + e
+        },
+        easeInOutElastic: function (f, h, e, l, k) {
+            var i = 1.70158;
+            var j = 0;
+            var g = l;
+            if (h == 0) {
+                return e
+            }
+            if ((h /= k / 2) == 2) {
+                return e + l
+            }
+            if (!j) {
+                j = k * (0.3 * 1.5)
+            }
+            if (g < Math.abs(l)) {
+                g = l;
+                var i = j / 4
+            } else {
+                var i = j / (2 * Math.PI) * Math.asin(l / g)
+            }
+            if (h < 1) {
+                return -0.5 * (g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
+            }
+            return g * Math.pow(2, -10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j) * 0.5 + l + e
+        },
+        easeInBack: function (e, f, a, i, h, g) {
+            if (g == undefined) {
+                g = 1.70158
+            }
+            return i * (f /= h) * f * ((g + 1) * f - g) + a
+        },
+        easeOutBack: function (e, f, a, i, h, g) {
+            if (g == undefined) {
+                g = 1.70158
+            }
+            return i * ((f = f / h - 1) * f * ((g + 1) * f + g) + 1) + a
+        },
+        easeInOutBack: function (e, f, a, i, h, g) {
+            if (g == undefined) {
+                g = 1.70158
+            }
+            if ((f /= h / 2) < 1) {
+                return i / 2 * (f * f * (((g *= (1.525)) + 1) * f - g)) + a
+            }
+            return i / 2 * ((f -= 2) * f * (((g *= (1.525)) + 1) * f + g) + 2) + a
+        },
+        easeInBounce: function (e, f, a, h, g) {
+            return h - jQuery.easing.easeOutBounce(e, g - f, 0, h, g) + a
+        },
+        easeOutBounce: function (e, f, a, h, g) {
+            if ((f /= g) < (1 / 2.75)) {
+                return h * (7.5625 * f * f) + a
+            } else {
+                if (f < (2 / 2.75)) {
+                    return h * (7.5625 * (f -= (1.5 / 2.75)) * f + 0.75) + a
+                } else {
+                    if (f < (2.5 / 2.75)) {
+                        return h * (7.5625 * (f -= (2.25 / 2.75)) * f + 0.9375) + a
+                    } else {
+                        return h * (7.5625 * (f -= (2.625 / 2.75)) * f + 0.984375) + a
+                    }
+                }
+            }
+        },
+        easeInOutBounce: function (e, f, a, h, g) {
+            if (f < g / 2) {
+                return jQuery.easing.easeInBounce(e, f * 2, 0, h, g) * 0.5 + a
+            }
+            return jQuery.easing.easeOutBounce(e, f * 2 - g, 0, h, g) * 0.5 + h * 0.5 + a
+        }
+    });
+</script>
+<script>
+    (function (name, factory) {
+        if (typeof window === 'object') {
+            window[name] = factory()
+        }
+    })('Ribbons', function () {
+        var _w = window,
+            _b = document.body,
+            _d = document.documentElement
 
-                                    // asjust starty based on options
-                                    if (/^(top|min)$/i.test(this._options.verticalPosition)) {
-                                        starty = 0 + hide
-                                    } else if (/^(middle|center)$/i.test(this._options.verticalPosition)) {
-                                        starty = this._height / 2
-                                    } else if (/^(bottom|max)$/i.test(this._options.verticalPosition)) {
-                                        starty = this._height - hide
-                                    }
+        // random helper
+        var random = function () {
+            if (arguments.length === 1) {
+                // only 1 argument
+                if (Array.isArray(arguments[0])) {
+                    // extract index from array
+                    var index = Math.round(random(0, arguments[0].length - 1))
+                    return arguments[0][index]
+                }
+                return random(0, arguments[0]) // assume numeric
+            } else if (arguments.length === 2) {
+                // two arguments range
+                return Math.random() * (arguments[1] - arguments[0]) + arguments[0]
+            } else if (arguments.length === 4) {
+                //
 
-                                    // ribbon sections data
-                                    var ribbon = [],
-                                        point1 = new Point(startx, starty),
-                                        point2 = new Point(startx, starty),
-                                        point3 = null,
-                                        color = Math.round(random(35, 35, 40, 40)),
-                                        delay = 0
+                var array = [arguments[0], arguments[1], arguments[2], arguments[3]]
+                return array[Math.floor(Math.random() * array.length)]
+                //return console.log(item)
+            }
+            return 0 // default
+        }
 
-                                    // buils ribbon sections
-                                    while (true) {
-                                        if (stop <= 0) break
-                                        stop--
+        // screen helper
+        var screenInfo = function (e) {
+            var width = Math.max(
+                0,
+                _w.innerWidth || _d.clientWidth || _b.clientWidth || 0
+            ),
+                height = Math.max(
+                    0,
+                    _w.innerHeight || _d.clientHeight || _b.clientHeight || 0
+                ),
+                scrollx =
+                    Math.max(0, _w.pageXOffset || _d.scrollLeft || _b.scrollLeft || 0) -
+                    (_d.clientLeft || 0),
+                scrolly =
+                    Math.max(0, _w.pageYOffset || _d.scrollTop || _b.scrollTop || 0) -
+                    (_d.clientTop || 0)
 
-                                        movex = Math.round(
-                                            (Math.random() * 1 - 0.2) * this._options.horizontalSpeed
-                                        )
-                                        movey = Math.round((Math.random() * 1 - 0.5) * (this._height * 0.25))
+            return {
+                width: width,
+                height: height,
+                ratio: width / height,
+                centerx: width / 2,
+                centery: height / 2,
+                scrollx: scrollx,
+                scrolly: scrolly
+            }
+        }
 
-                                        point3 = new Point()
-                                        point3.copy(point2)
+        // mouse/input helper
+        var mouseInfo = function (e) {
+            var screen = screenInfo(e),
+                mousex = e ? Math.max(0, e.pageX || e.clientX || 0) : 0,
+                mousey = e ? Math.max(0, e.pageY || e.clientY || 0) : 0
 
-                                        if (dir === 'right') {
-                                            point3.add(movex, movey)
-                                            if (point2.x >= max) break
-                                        } else if (dir === 'left') {
-                                            point3.subtract(movex, movey)
-                                            if (point2.x <= min) break
-                                        }
-                                        // point3.clampY( 0, this._height );
-                                        //console.log(Math.round(random(1, 5)))
-                                        ribbon.push({
-                                            // single ribbon section
-                                            point1: new Point(point1.x, point1.y),
-                                            point2: new Point(point2.x, point2.y),
-                                            point3: point3,
-                                            color: color,
-                                            delay: delay,
-                                            dir: dir,
-                                            alpha: 0,
-                                            phase: 0
-                                        })
+            return {
+                mousex: mousex,
+                mousey: mousey,
+                centerx: mousex - screen.width / 2,
+                centery: mousey - screen.height / 2
+            }
+        }
 
-                                        point1.copy(point2)
-                                        point2.copy(point3)
+        // point object
+        var Point = function (x, y) {
+            this.x = 0
+            this.y = 0
+            this.set(x, y)
+        }
+        Point.prototype = {
+            constructor: Point,
 
-                                        delay += 4
-                                            //color += 1
-                                            //console.log('colorCycleSpeed', color)
-                                    }
-                                    this._ribbons.push(ribbon)
-                                },
+            set: function (x, y) {
+                this.x = x || 0
+                this.y = y || 0
+            },
+            copy: function (point) {
+                this.x = point.x || 0
+                this.y = point.y || 0
+                return this
+            },
+            multiply: function (x, y) {
+                this.x *= x || 1
+                this.y *= y || 1
+                return this
+            },
+            divide: function (x, y) {
+                this.x /= x || 1
+                this.y /= y || 1
+                return this
+            },
+            add: function (x, y) {
+                this.x += x || 0
+                this.y += y || 0
+                return this
+            },
+            subtract: function (x, y) {
+                this.x -= x || 0
+                this.y -= y || 0
+                return this
+            },
+            clampX: function (min, max) {
+                this.x = Math.max(min, Math.min(this.x, max))
+                return this
+            },
+            clampY: function (min, max) {
+                this.y = Math.max(min, Math.min(this.y, max))
+                return this
+            },
+            flipX: function () {
+                this.x *= -1
+                return this
+            },
+            flipY: function () {
+                this.y *= -1
+                return this
+            }
+        }
 
-                                // Draw single section
-                                _drawRibbonSection: function(section) {
-                                    if (section) {
-                                        if (section.phase >= 1 && section.alpha <= 0) {
-                                            return true // done
-                                        }
-                                        if (section.delay <= 0) {
-                                            section.phase += 0.02
-                                            section.alpha = Math.sin(section.phase) * 1
-                                            section.alpha = section.alpha <= 0 ? 0 : section.alpha
-                                            section.alpha = section.alpha >= 1 ? 1 : section.alpha
+        // class constructor
+        var Factory = function (options) {
+            this._canvas = null
+            this._context = null
+            this._sto = null
+            this._width = 0
+            this._height = 0
+            this._scroll = 0
+            this._ribbons = []
+            this._options = {
+                // ribbon color HSL saturation amount
+                colorSaturation: '0%',
+                // ribbon color HSL brightness amount
+                colorBrightness: '0%',
+                // ribbon color opacity amount
+                colorAlpha: 0.65,
+                // how fast to cycle through colors in the HSL color space
+                colorCycleSpeed: 6,
+                // where to start from on the Y axis on each side (top|min, middle|center, bottom|max, random)
+                verticalPosition: 'center',
+                // how fast to get to the other side of the screen
+                horizontalSpeed: 150,
+                // how many ribbons to keep on screen at any given time
+                ribbonCount: 3,
+                // add stroke along with ribbon fill colors
+                strokeSize: 0,
+                // move ribbons vertically by a factor on page scroll
+                parallaxAmount: -0.5,
+                // add animation effect to each ribbon section over time
+                animateSections: true
+            }
+            this._onDraw = this._onDraw.bind(this)
+            this._onResize = this._onResize.bind(this)
+            this._onScroll = this._onScroll.bind(this)
+            this.setOptions(options)
+            this.init()
+        }
 
-                                            if (this._options.animateSections) {
-                                                var mod = Math.sin(1 + section.phase * Math.PI / 2) * 0.1
+        // class prototype
+        Factory.prototype = {
+            constructor: Factory,
 
-                                                if (section.dir === 'right') {
-                                                    section.point1.add(mod, 0)
-                                                    section.point2.add(mod, 0)
-                                                    section.point3.add(mod, 0)
-                                                } else {
-                                                    section.point1.subtract(mod, 0)
-                                                    section.point2.subtract(mod, 0)
-                                                    section.point3.subtract(mod, 0)
-                                                }
-                                                section.point1.add(0, mod)
-                                                section.point2.add(0, mod)
-                                                section.point3.add(0, mod)
-                                            }
-                                        } else {
-                                            section.delay -= 0.5
-                                        }
-                                        //console.log('section.color', section.color)
-                                        var s = this._options.colorSaturation,
-                                            l = this._options.colorBrightness,
-                                            c =
-                                            'hsla(' +
-                                            section.color +
-                                            ', ' +
-                                            s +
-                                            ', ' +
-                                            l +
-                                            ', ' +
-                                            section.alpha +
-                                            ' )'
+            // Set and merge local options
+            setOptions: function (options) {
+                if (typeof options === 'object') {
+                    for (var key in options) {
+                        if (options.hasOwnProperty(key)) {
+                            this._options[key] = options[key]
+                        }
+                    }
+                }
+            },
 
-                                        this._context.save()
+            // Initialize the ribbons effect
+            init: function () {
+                try {
+                    this._canvas = document.createElement('canvas')
+                    this._canvas.style['display'] = 'block'
+                    this._canvas.style['position'] = 'fixed'
+                    this._canvas.style['margin'] = '0'
+                    this._canvas.style['padding'] = '0'
+                    this._canvas.style['border'] = '0'
+                    this._canvas.style['outline'] = '0'
+                    this._canvas.style['left'] = '0'
+                    this._canvas.style['top'] = '0'
+                    this._canvas.style['width'] = '100%'
+                    this._canvas.style['height'] = '100%'
+                    this._canvas.style['z-index'] = '-1'
+                    this._onResize()
 
-                                        if (this._options.parallaxAmount !== 0) {
-                                            this._context.translate(
-                                                0,
-                                                this._scroll * this._options.parallaxAmount
-                                            )
-                                        }
-                                        this._context.beginPath()
-                                        this._context.moveTo(section.point1.x, section.point1.y)
-                                        this._context.lineTo(section.point2.x, section.point2.y)
-                                        this._context.lineTo(section.point3.x, section.point3.y)
-                                        this._context.fillStyle = c
-                                        this._context.fill()
+                    this._context = this._canvas.getContext('2d')
+                    this._context.clearRect(0, 0, this._width, this._height)
+                    this._context.globalAlpha = this._options.colorAlpha
 
-                                        if (this._options.strokeSize > 0) {
-                                            this._context.lineWidth = this._options.strokeSize
-                                            this._context.strokeStyle = c
-                                            this._context.lineCap = 'round'
-                                            this._context.stroke()
-                                        }
-                                        this._context.restore()
-                                    }
-                                    return false // not done yet
-                                },
+                    window.addEventListener('resize', this._onResize)
+                    window.addEventListener('scroll', this._onScroll)
+                    document.body.appendChild(this._canvas)
+                } catch (e) {
+                    console.warn('Canvas Context Error: ' + e.toString())
+                    return
+                }
+                this._onDraw()
+            },
 
-                                // Draw ribbons
-                                _onDraw: function() {
-                                    // cleanup on ribbons list to rtemoved finished ribbons
-                                    for (var i = 0, t = this._ribbons.length; i < t; ++i) {
-                                        if (!this._ribbons[i]) {
-                                            this._ribbons.splice(i, 1)
-                                        }
-                                    }
+            // Create a new random ribbon and to the list
+            addRibbon: function () {
+                // movement data
+                var dir = Math.round(random(1, 9)) > 5 ? 'right' : 'left',
+                    stop = 1000,
+                    hide = 200,
+                    min = 0 - hide,
+                    max = this._width + hide,
+                    movex = 0,
+                    movey = 0,
+                    startx = dir === 'right' ? min : max,
+                    starty = Math.round(random(0, this._height))
 
-                                    // draw new ribbons
-                                    this._context.clearRect(0, 0, this._width, this._height)
+                // asjust starty based on options
+                if (/^(top|min)$/i.test(this._options.verticalPosition)) {
+                    starty = 0 + hide
+                } else if (/^(middle|center)$/i.test(this._options.verticalPosition)) {
+                    starty = this._height / 2
+                } else if (/^(bottom|max)$/i.test(this._options.verticalPosition)) {
+                    starty = this._height - hide
+                }
 
-                                    for (
-                                        var a = 0; a < this._ribbons.length;
-                                        ++a // single ribbon
-                                    ) {
-                                        var ribbon = this._ribbons[a],
-                                            numSections = ribbon.length,
-                                            numDone = 0
+                // ribbon sections data
+                var ribbon = [],
+                    point1 = new Point(startx, starty),
+                    point2 = new Point(startx, starty),
+                    point3 = null,
+                    color = Math.round(random(35, 35, 40, 40)),
+                    delay = 0
 
-                                        for (
-                                            var b = 0; b < numSections;
-                                            ++b // ribbon section
-                                        ) {
-                                            if (this._drawRibbonSection(ribbon[b])) {
-                                                numDone++ // section done
-                                            }
-                                        }
-                                        if (numDone >= numSections) {
-                                            // ribbon done
-                                            this._ribbons[a] = null
-                                        }
-                                    }
-                                    // maintain optional number of ribbons on canvas
-                                    if (this._ribbons.length < this._options.ribbonCount) {
-                                        this.addRibbon()
-                                    }
-                                    requestAnimationFrame(this._onDraw)
-                                },
+                // buils ribbon sections
+                while (true) {
+                    if (stop <= 0) break
+                    stop--
 
-                                // Update container size info
-                                _onResize: function(e) {
-                                    var screen = screenInfo(e)
-                                    this._width = screen.width
-                                    this._height = screen.height
+                    movex = Math.round(
+                        (Math.random() * 1 - 0.2) * this._options.horizontalSpeed
+                    )
+                    movey = Math.round((Math.random() * 1 - 0.5) * (this._height * 0.25))
 
-                                    if (this._canvas) {
-                                        this._canvas.width = this._width
-                                        this._canvas.height = this._height
+                    point3 = new Point()
+                    point3.copy(point2)
 
-                                        if (this._context) {
-                                            this._context.globalAlpha = this._options.colorAlpha
-                                        }
-                                    }
-                                },
+                    if (dir === 'right') {
+                        point3.add(movex, movey)
+                        if (point2.x >= max) break
+                    } else if (dir === 'left') {
+                        point3.subtract(movex, movey)
+                        if (point2.x <= min) break
+                    }
+                    // point3.clampY( 0, this._height );
+                    //console.log(Math.round(random(1, 5)))
+                    ribbon.push({
+                        // single ribbon section
+                        point1: new Point(point1.x, point1.y),
+                        point2: new Point(point2.x, point2.y),
+                        point3: point3,
+                        color: color,
+                        delay: delay,
+                        dir: dir,
+                        alpha: 0,
+                        phase: 0
+                    })
 
-                                // Update container size info
-                                _onScroll: function(e) {
-                                    var screen = screenInfo(e)
-                                    this._scroll = screen.scrolly
-                                }
+                    point1.copy(point2)
+                    point2.copy(point3)
+
+                    delay += 4
+                    //color += 1
+                    //console.log('colorCycleSpeed', color)
+                }
+                this._ribbons.push(ribbon)
+            },
+
+            // Draw single section
+            _drawRibbonSection: function (section) {
+                if (section) {
+                    if (section.phase >= 1 && section.alpha <= 0) {
+                        return true // done
+                    }
+                    if (section.delay <= 0) {
+                        section.phase += 0.02
+                        section.alpha = Math.sin(section.phase) * 1
+                        section.alpha = section.alpha <= 0 ? 0 : section.alpha
+                        section.alpha = section.alpha >= 1 ? 1 : section.alpha
+
+                        if (this._options.animateSections) {
+                            var mod = Math.sin(1 + section.phase * Math.PI / 2) * 0.1
+
+                            if (section.dir === 'right') {
+                                section.point1.add(mod, 0)
+                                section.point2.add(mod, 0)
+                                section.point3.add(mod, 0)
+                            } else {
+                                section.point1.subtract(mod, 0)
+                                section.point2.subtract(mod, 0)
+                                section.point3.subtract(mod, 0)
                             }
+                            section.point1.add(0, mod)
+                            section.point2.add(0, mod)
+                            section.point3.add(0, mod)
+                        }
+                    } else {
+                        section.delay -= 0.5
+                    }
+                    //console.log('section.color', section.color)
+                    var s = this._options.colorSaturation,
+                        l = this._options.colorBrightness,
+                        c =
+                            'hsla(' +
+                            section.color +
+                            ', ' +
+                            s +
+                            ', ' +
+                            l +
+                            ', ' +
+                            section.alpha +
+                            ' )'
 
-                            // export
-                            return Factory
-                        })
+                    this._context.save()
 
-                        new Ribbons({
-                            colorSaturation: '0%',
-                            colorBrightness: '0%',
-                            colorAlpha: 0.5,
-                            colorCycleSpeed: 5,
-                            verticalPosition: 'random',
-                            horizontalSpeed: 200,
-                            ribbonCount: 3,
-                            strokeSize: 0,
-                            parallaxAmount: -0.2,
-                            animateSections: true
-                        })
-                    </script>
-                    <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
-                    <!-- <script>
+                    if (this._options.parallaxAmount !== 0) {
+                        this._context.translate(
+                            0,
+                            this._scroll * this._options.parallaxAmount
+                        )
+                    }
+                    this._context.beginPath()
+                    this._context.moveTo(section.point1.x, section.point1.y)
+                    this._context.lineTo(section.point2.x, section.point2.y)
+                    this._context.lineTo(section.point3.x, section.point3.y)
+                    this._context.fillStyle = c
+                    this._context.fill()
+
+                    if (this._options.strokeSize > 0) {
+                        this._context.lineWidth = this._options.strokeSize
+                        this._context.strokeStyle = c
+                        this._context.lineCap = 'round'
+                        this._context.stroke()
+                    }
+                    this._context.restore()
+                }
+                return false // not done yet
+            },
+
+            // Draw ribbons
+            _onDraw: function () {
+                // cleanup on ribbons list to rtemoved finished ribbons
+                for (var i = 0, t = this._ribbons.length; i < t; ++i) {
+                    if (!this._ribbons[i]) {
+                        this._ribbons.splice(i, 1)
+                    }
+                }
+
+                // draw new ribbons
+                this._context.clearRect(0, 0, this._width, this._height)
+
+                for (
+                    var a = 0; a < this._ribbons.length;
+                    ++a // single ribbon
+                ) {
+                    var ribbon = this._ribbons[a],
+                        numSections = ribbon.length,
+                        numDone = 0
+
+                    for (
+                        var b = 0; b < numSections;
+                        ++b // ribbon section
+                    ) {
+                        if (this._drawRibbonSection(ribbon[b])) {
+                            numDone++ // section done
+                        }
+                    }
+                    if (numDone >= numSections) {
+                        // ribbon done
+                        this._ribbons[a] = null
+                    }
+                }
+                // maintain optional number of ribbons on canvas
+                if (this._ribbons.length < this._options.ribbonCount) {
+                    this.addRibbon()
+                }
+                requestAnimationFrame(this._onDraw)
+            },
+
+            // Update container size info
+            _onResize: function (e) {
+                var screen = screenInfo(e)
+                this._width = screen.width
+                this._height = screen.height
+
+                if (this._canvas) {
+                    this._canvas.width = this._width
+                    this._canvas.height = this._height
+
+                    if (this._context) {
+                        this._context.globalAlpha = this._options.colorAlpha
+                    }
+                }
+            },
+
+            // Update container size info
+            _onScroll: function (e) {
+                var screen = screenInfo(e)
+                this._scroll = screen.scrolly
+            }
+        }
+
+        // export
+        return Factory
+    })
+
+    new Ribbons({
+        colorSaturation: '0%',
+        colorBrightness: '0%',
+        colorAlpha: 0.5,
+        colorCycleSpeed: 5,
+        verticalPosition: 'random',
+        horizontalSpeed: 200,
+        ribbonCount: 3,
+        strokeSize: 0,
+        parallaxAmount: -0.2,
+        animateSections: true
+    })
+</script>
+<!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+<!-- <script>
                         const price = [];
                         for (var i = 0; i < final.length; i++) {
                             price.push(final[i].price);
